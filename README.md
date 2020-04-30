@@ -51,19 +51,16 @@ let snake = null, // 蛇实例
     - 蛇吃食物要做的事情：调用移动方法，传入参数不要去掉尾巴，并更新下一个食物位置
     - 蛇碰撞后要做的事：调用Game实例游戏结束的方法
 
-    * 
-
 ### 3.生成食物的函数：判断食物随机坐标是否在蛇身上
 
-在while循环中：随机生成x,y坐标，循环蛇身信息数组，判断新坐标是否在蛇身上
+while循环中：  
+1.随机生成x,y坐标；  
+2.循环蛇身信息数组，判断新坐标是否在蛇身上，一旦条件成立立即结束循环，让while进入下一轮循环，循环中条件都不成立，说明食物坐标没有在蛇身上，include = false结束while循环
 
-    先判断新坐标是否在蛇身上，条件成立，跳出蛇身数组循环，重新生成随机坐标再判断；
-    条件不成立，include = false结束while循环，往下执行
-
-然后创建食物新实例，更新食物实例坐标位置
+然后创建食物新实例，更新食物实例坐标位置  
 获取页面食物dom元素，如果获取不到，就创建新食物方块添加到页面，反之，更新页面的食物 left top 值（单例模式）
 
-```js
+```
 let include = true;
 while (include) {
     x = Math.floor(Math.random() * (td - 1));
@@ -72,14 +69,16 @@ while (include) {
         if (val[0] === x && val[1] === y) {
             return true;
         } else {
+            // some循环中，上面的条件都不成立，就会执行下面的语句，结束while循环
             include = false;
         }
     })
 }
 ```
 
-> 遇到的问题，过程中使用了forEach循环进行判断，但forEach无法跳出该循环，导致外层循环无法进入新一轮循环，生成新的随机坐标进行比较  
-解决办法，使用some循环替换forEach，some循环可以使用return true跳出该循环
+> 遇到的问题，过程中使用了forEach循环进行判断，但forEach没有循环完就无法立即结束循环，导致外层循环while无法立即进入新一轮循环  
+> 解决办法：使用some循环替换forEach循环  
+> 原因解析：当forEach循环中碰到return相关语句，只会跳出本次循环；而some循环，碰到return true语句就会立即结束some循环，如果碰到的是return/return false语句，同forEach一样只跳出本次循环
 
 ### 4.游戏构造函数（游戏逻辑）
 
