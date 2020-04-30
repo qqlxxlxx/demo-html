@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			p{
+				width: 2000px;
+				line-height: 35px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>连续两场都中野包下<br>
+		IG现在是想好打下路了吗？<br>
+		还是BP出来才决定的？<br>
+		如果IG想好要打下路<br>
+		我对下路的pick看不懂<br>
+		连续两把 对面先手塔姆<br>
+		如果打下路的话 不应该选些远程辅助counter对面吗？<br>
+		对面是三把都坚持给下路counter 一把辅助 两把AD<br><br>
+		但对面已经先亮辅助了 为什么我们不counter对面辅助<br>
+		对面AD后手选 一定拿手长counter我们的 <br>
+		我们辅助后手选 不counter对面<br>
+		不是平白吃了BP亏<br>
+		拿软辅对线消耗更强 就是需要队友保护<br>
+		但我看两把宁王帮完中路就来下路<br>
+		这种信息如果IG自己进比赛前就知道 <br>
+		我不懂下路BP为什么不选counter对面的</p>
+
+		<p>我们选猫咪怕强开 对面就是选潘森<br>
+		对面选塔姆怕消耗 我们就不选远程消耗辅助<br>
+		然后AD射程还被对面counter</p>
+
+		<p>如果已知队友会帮下 我看不懂下路为什么要这么选 这样选很难玩啊<br>
+		你这样选把一个可以优势或者均势的下路选角变成劣势选角 <br>
+		这样队友帮也没用啊</p>
+		
+		<p>帮优不帮劣的根本原因是帮优收益大啊<br>
+		你推线推到对面塔下帮一波 直接吃对面塔皮<br>
+		被对面推线帮一波也只是缓解对线压力 并没有其他收益啊</p>
+		
+		<p>连续两场都中野包下<br>
+		IG现在是想好打下路了吗？<br>
+		还是BP出来才决定的？<br>
+		如果IG想好要打下路<br>
+		我对下路的pick看不懂<br>
+		连续两把 对面先手塔姆<br>
+		如果打下路的话 不应该选些远程辅助counter对面吗？<br>
+		对面是三把都坚持给下路counter 一把辅助 两把AD<br><br>
+		但对面已经先亮辅助了 为什么我们不counter对面辅助<br>
+		对面AD后手选 一定拿手长counter我们的 <br>
+		我们辅助后手选 不counter对面<br>
+		不是平白吃了BP亏<br>
+		拿软辅对线消耗更强 就是需要队友保护<br>
+		但我看两把宁王帮完中路就来下路<br>
+		这种信息如果IG自己进比赛前就知道 <br>
+		我不懂下路BP为什么不选counter对面的</p>
+		
+		<p>我们选猫咪怕强开 对面就是选潘森<br>
+		对面选塔姆怕消耗 我们就不选远程消耗辅助<br>
+		然后AD射程还被对面counter</p>
+		
+		<p>如果已知队友会帮下 我看不懂下路为什么要这么选 这样选很难玩啊<br>
+		你这样选把一个可以优势或者均势的下路选角变成劣势选角 <br>
+		这样队友帮也没用啊</p>
+		
+		<p>帮优不帮劣的根本原因是帮优收益大啊<br>
+		你推线推到对面塔下帮一波 直接吃对面塔皮<br>
+		被对面推线帮一波也只是缓解对线压力 并没有其他收益啊</p>
+		
+		<script>
+			window.onscroll = function(){
+				//1.IE9及以上浏览器
+				// console.log(window.pageXOffset);
+				// console.log(window.pageYOffset);
+				
+				//2.标准模式下浏览器
+				// console.log(document.documentElement.scrollTop);
+				// console.log(document.documentElement.scrollLeft);
+				
+				//3.混杂模式下浏览器
+				// console.log(document.body.scrollTop); 
+				// console.log(document.body.scrollLeft); 
+				
+				//封装兼容方法
+				let {x, y} = getPageScroll();
+				console.log(x, y); 
+				function getPageScroll(){
+					let x, y;
+					if(window.pageXOffset){
+						x = window.pageXOffset;
+						y = window.pageXOffset;
+					}else if(document.compatMode === "BackCompat"){
+						x = document.body.scrollLeft;
+						y = document.body.scrollTop;
+					}else{
+						x = window.document.documentElement.scrollTop;
+						y = window.document.documentElement.scrollLeft;
+					}
+					return{
+						x:x,
+						y:y
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

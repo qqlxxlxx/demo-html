@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>折叠菜单</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .nav{
+      width: 300px;
+      border: 1px solid #000;
+      margin: 10px auto;
+      border-radius: 10px;
+    }
+    .nav>li{
+      list-style: none;
+      line-height: 35px;
+      text-indent: 2em;
+      border-bottom: 1px solid #000;
+      position: relative;
+    }
+    .nav>li:last-child{
+      border-bottom: none;
+    }
+    .nav>li>span{
+      font-size: 20px;
+      text-indent: initial;
+      position: absolute;
+      right: 25px;
+    }
+    .sub{
+      display: none;
+    }
+    .sub>li{
+      list-style: none;
+      text-indent: 4em;
+      background: sandybrown;
+      border: 1px solid white;
+    }
+    .sub>li:hover{
+      background: tomato;
+    }
+    .current>span{
+      transform: rotate(90deg);
+    }
+  </style>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $(function() {
+      /*
+      $('.nav>li').click(function(){
+        //拿到二级菜单
+        var $sub = $(this).children('.sub');
+        $sub.slideDown(500);
+        //$sub.slideUp(500); //如何实现
+        //拿到所有非当前二级菜单
+        var $otherSub = $(this).siblings().children('.sub');
+        $otherSub.slideUp(500);
+        //被点击一级菜单箭头旋转
+        $(this).addClass('current');
+        $(this).siblings().removeClass('current');
+      });
+      */
+
+      $('.nav>li').click(function(){
+        // 拿到二级菜单
+        var $sub = $(this).children('.sub');
+        // 拿到所有非当前二级菜单
+        var $otherSub = $(this).siblings().children('.sub');
+        
+        $sub.stop();
+        $otherSub.stop();
+        
+        $sub.slideToggle(500);
+        $(this).toggleClass('current');
+          
+        $otherSub.slideUp(500);
+        $(this).siblings().removeClass('current');
+      });
+    });
+  </script>
+</head>
+<body>
+  <ul class="nav">
+    <li class="">
+      一级菜单
+      <span> &gt; </span>
+      <ul class="sub">
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+      </ul>
+    </li>
+    <li>
+      一级菜单
+      <span> &gt; </span>
+      <ul class="sub">
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+      </ul>
+    </li>
+    <li>
+      一级菜单
+      <span> &gt; </span>
+      <ul class="sub">
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+      </ul>
+    </li>
+  </ul>
+</body>
+</html>

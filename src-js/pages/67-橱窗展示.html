@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .box {
+      width: 800px;
+      height: 180px;
+      border: 1px solid #333;
+      margin: 100px auto;
+      overflow: hidden;
+    }
+    ul {
+      list-style: none;
+      display: flex;
+      position: relative;
+    }
+    ul li img {
+      width: 160px;
+      vertical-align: bottom;
+    }
+    .progress {
+      width: 100%;
+      height: 20px;
+      background: #ddd;
+      position: relative;
+    }
+    .line {
+      width: 100px;
+      height: 100%;
+      background: pink;
+      border-radius: 15px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .box2 ul {
+      width: 800px;
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <ul>
+      <li><img src="../img/tou1.jpg"></li>
+      <li><img src="../img/tou2.jpg"></li>
+      <li><img src="../img/tou3.jpg"></li>
+      <li><img src="../img/tou4.jpg"></li>
+      <li><img src="../img/tou5.jpg"></li>
+      <li><img src="../img/tou1.jpg"></li>
+      <li><img src="../img/tou2.jpg"></li>
+      <li><img src="../img/tou3.jpg"></li>
+      <li><img src="../img/tou4.jpg"></li>
+      <li><img src="../img/tou5.jpg"></li>
+    </ul>
+    <div class="progress">
+      <div class="line"></div>
+    </div>
+  </div>
+  <div class="box2">
+    <ul>
+      <li><img src="../img/tou1.jpg"></li>
+      <li><img src="../img/tou2.jpg"></li>
+      <li><img src="../img/tou3.jpg"></li>
+      <li><img src="../img/tou4.jpg"></li>
+      <li><img src="../img/tou5.jpg"></li>
+      <li><img src="../img/tou1.jpg"></li>
+      <li><img src="../img/tou2.jpg"></li>
+      <li><img src="../img/tou3.jpg"></li>
+      <li><img src="../img/tou4.jpg"></li>
+      <li><img src="../img/tou5.jpg"></li>
+    </ul>
+  </div>
+
+  <script>
+    //1.拿到操作元素
+    let oUl = document.querySelector("ul");
+    let oItems = document.querySelectorAll(".box ul>li");
+    let oProgress = document.querySelector(".progress");
+    let oBox = document.querySelector(".box");
+    let oLine = document.querySelector(".line");
+
+    //2.获取ul宽度
+    let ulWidth = oItems[0].offsetWidth * oItems.length;
+    //3.设置ul宽度
+    oUl.style.width = ulWidth + "px";
+
+    //4.滚动条宽度
+    // 滚动条宽度 / 滚动条滚动范围 = 容器宽度 / 内容的范围
+    let progressWidth = oProgress.offsetWidth;
+    let boxWidth = oBox.offsetWidth;
+    let lineWidth = boxWidth / ulWidth * progressWidth;
+
+    //5.设置滚动条宽度
+    oLine.style.width = lineWidth + "px";
+    //滚动条最大滚动范围
+    let maxLineX = progressWidth - lineWidth;
+    //图片最大滚动范围
+    let maxImgX = boxWidth - ulWidth;
+
+    //6.鼠标按下事件
+    oLine.onmousedown = function(event) {
+      event = event || window.event;
+      event.stopPropagation();
+      let begin = parseFloat(oLine.style.left) || 0;
+      //7.1鼠标在滚动条按下的位置
+      let mouseX = event.pageX - oBox.offsetLeft;
+
+      //7.鼠标移动事件
+      document.onmousemove = function(event) {
+        event = event || window.event;
+        //7.2鼠标在滚动条中移动后的位置
+        let moveMouseX = event.pageX - oBox.offsetLeft;
+        //7.3偏移位
+        let offsetX = moveMouseX - mouseX + begin;
+        //7.4校验
+        offsetX = offsetX < 0 ? 0 : offsetX;
+        offsetX = offsetX > maxLineX ? maxLineX : offsetX;
+        //7.5重设滚动条位置
+        oLine.style.left = offsetX + "px";
+        //7.6图片滚动距离
+        //滚动条滚动距离 / 滚动条最大滚动范围 = 图片滚动距离 / 图片最大滚动范围
+        let imgOffsetX = offsetX / maxLineX * maxImgX;
+        //8.重设图片位置
+        oUl.style.left = imgOffsetX + "px";
+      }
+    }
+    document.onmouseup = function() {
+      document.onmousemove = null;
+    }
+  </script>
+</body>
+</html>

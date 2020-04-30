@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.header{
+				width: 100%;
+				height: 70px;
+				background-color: pink;
+			}
+			.nav{
+				width: 100%;
+				height: 60px;
+				background-color: rgba(33,33,33,0.8);
+			}
+			.footer{
+				width: 100%;
+				height: 3000px;
+				background-color: skyblue;
+			}
+			span{
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+				display: inline-block;
+				width: 40px;
+				height: 40px;
+				background-color: plum;
+				visibility: hidden;
+        cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header"></div>
+		<div class="nav"></div>
+		<div class="footer">
+			文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>文字<br>
+			呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>呆毛<br>
+		</div>
+		<span>TOP</span>
+		<script src="../js/tools.js"></script>
+		<script>
+			let oTop = document.querySelector(".header");
+			let oNav = document.querySelector(".nav");
+			let topBtn = document.querySelector("span");
+			
+			let topHeight = oTop.offsetHeight;
+			
+			window.onscroll = function(){
+				let offsetY = getPageScroll().y;
+				console.log(offsetY);
+				if(offsetY >= topHeight){
+					oNav.style.position = "fixed";
+					oNav.style.top = "0px";
+          oTop.style.marginBottom = "60px";
+				}
+				else{
+					oNav.style.position = "";
+          oTop.style.marginBottom = "0";
+				}
+				if(offsetY >= 200){
+					topBtn.style.visibility = "visible";
+				}else{
+					topBtn.style.visibility = "hidden";
+				}
+			}
+			
+			let timerId = null;
+			topBtn.onclick = function(){
+				clearInterval(timerId);
+				timerId = setInterval(function(){
+					let begin = getPageScroll().y;
+					let target = 0;
+					let step = (target - begin) * 0.5;
+					begin += step;
+					window.scroll(0, begin);
+					if(Math.abs(Math.floor(step)) <= 1){
+						clearInterval(timerId);
+						//x:网页水平滚动位置,y:网页垂直滚动位置
+						window.scroll(0, 0);
+						return;
+					}
+				}, 50)
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .box {
+        width: 360px;
+        height: 260px;
+        border: 1px solid red;
+        margin: 100px auto;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .top,
+      .bottom {
+        width: 100%;
+        height: 130px;
+        /* background-color: #ccc; */
+        position: absolute;
+        left: 0;
+        z-index: 99;
+      }
+
+      .bottom {
+        /* background-color: rosybrown; */
+        bottom: 0;
+      }
+
+      .box img {
+        /* height: 1300px; */
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="top"></div>
+      <div class="bottom"></div>
+      <img src="../img/timg.jpg">
+    </div>
+
+    <script>
+      window.onload = function() {
+        let oTop = document.querySelector(".top");
+        let oBottom = document.querySelector(".bottom");
+        let oImg = document.querySelector("img");
+        let oDiv = document.querySelector(".box");
+
+        //计算最大偏移位
+        let boxHeigth = parseInt(getComputedStyle(oDiv).height);
+        let imgHeigth = parseInt(getComputedStyle(oImg).height); //注：外部资源(图片)需要在onload才能获取到
+        let maxOffsetY = boxHeigth - imgHeigth;
+        let timerId = null;
+
+        oTop.onmouseenter = function() {
+          let offsetY = parseInt(oImg.style.top) || 0; //.style只能获取行内
+          timerId = setInterval(function() {
+            offsetY -= 3;
+            if (offsetY <= maxOffsetY) {
+              clearInterval(timerId);
+              return;
+            }
+            oImg.style.top = offsetY + "px";
+          }, 10);
+        }
+        oTop.onmouseleave = function() {
+          clearInterval(timerId);
+        }
+
+        oBottom.onmouseenter = function() {
+          let offsetY = parseInt(oImg.style.top);
+          timerId = setInterval(function() {
+            offsetY += 3;
+            if (offsetY >= 0) {
+              clearInterval(timerId);
+            }
+            oImg.style.top = offsetY + "px";
+          }, 10)
+
+        }
+        oBottom.onmouseleave = function() {
+          clearInterval(timerId);
+        };
+      }
+
+      /*let oTop = document.querySelector(".top");
+      let oBottom = document.querySelector(".bottom");
+      let oImg = document.querySelector("img");
+      let oDiv = document.querySelector(".box");
+			
+      //计算最大偏移位
+      let boxHeigth = parseInt( getComputedStyle(oDiv).height );
+      let imgHeigth = parseInt( getComputedStyle(oImg).height ); //CSS手动设置高才获取到？原因：写在底部只是DOM加载完了, 但是里面的外部资源(例如图片)还没加载完. 只有onLoad里面才都加载完毕了
+      let maxOffsetY = boxHeigth - imgHeigth;
+      let timerId = null;
+			
+      oTop.onmouseenter = function() {
+      	let offsetY = parseInt(oImg.style.top) || 0; //只能获取行内？
+      	timerId = setInterval(function() {
+      		offsetY -= 3;
+      		if(offsetY <= maxOffsetY){
+      			clearInterval(timerId);
+      			return;
+      		}
+      		oImg.style.top = offsetY + "px";
+      	}, 10);
+      }
+      oTop.onmouseleave = function() {
+      	clearInterval(timerId);
+      }
+			
+      oBottom.onmouseenter = function() {
+      	let offsetY = parseInt(oImg.style.top);
+      	timerId = setInterval(function(){
+      		offsetY += 3;
+      		if(offsetY >= 0){
+      			clearInterval(timerId);
+      		}
+      		oImg.style.top = offsetY + "px";
+      	}, 10)
+      	
+      }
+      oBottom.onmouseleave = function() {
+      	clearInterval(timerId);
+      }*/
+    </script>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .box {
+        width: 200px;
+        height: 100px;
+        margin: 50px auto;
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .time {
+        display: flex;
+        /* justify-content: center; */
+      }
+
+      .time>div {
+        width: 50px;
+        height: 50px;
+        background-color: #333;
+        line-height: 50px;
+        font-size: 30px;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        position: relative;
+      }
+
+      .min {
+        margin: 0 10px;
+      }
+
+      .time>div::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: red;
+        position: absolute;
+        left: 0;
+        top: 23px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="time">
+        <div class="hour">00</div>
+        <div class="min">00</div>
+        <div class="sec">00</div>
+      </div>
+    </div>
+
+    <script>
+      // 1.获取需要操作的元素
+      let oHour = document.querySelector(".hour");
+      let oMinite = document.querySelector(".min");
+      let oSecond = document.querySelector(".sec");
+
+      // 2.获取时间的差值
+      let remDate = new Date("2019-12-20 00:00:00");
+      setTime(remDate);
+
+      // 3.将差值设置给元素
+      setInterval(function() {
+        setTime(remDate);
+      }, 1000);
+
+      function setTime(remDate) {
+        let obj = getDifferTime(remDate);
+        // console.log(obj);
+        oHour.innerText = obj.hour;
+        oMinite.innerText = obj.minute;
+        oSecond.innerText = obj.second;
+      }
+
+      function getDifferTime(remDate, curDate = new Date()) {
+        let differTime = remDate - curDate;
+        let differSecond = differTime / 1000;
+
+        let day = Math.floor(differSecond / (24 * 60 * 60));
+        day = day >= 10 ? day : "0" + day;
+        let hour = Math.floor(differSecond / (60 * 60) % 24);
+        hour = hour >= 10 ? hour : "0" + hour;
+        let minute = Math.floor(differSecond / 60 % 60);
+        minute = minute >= 10 ? minute : "0" + minute;
+        let second = Math.floor(differSecond % 60);
+        second = second >= 10 ? second : "0" + second;
+
+        return {
+          day: day,
+          hour: hour,
+          minute: minute,
+          second: second,
+        }
+      }
+
+      // 待修复bug:倒计时为0之后是负数
+    </script>
+  </body>
+</html>

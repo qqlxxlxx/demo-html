@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>超炫酷的Web 3d特效-av79178686</title>
+  <style>
+    li,ul,div,html,body { margin: 0; padding: 0; }
+    html,body { height: 100%; }
+    li { list-style: none; }
+    .wrap { height: 100%; overflow: hidden; perspective: 800px; }
+    #box { position: relative; top: 50%; left: 50%; z-index: 1; width: 0; height: 0; transform-style: preserve-3d; transform: translateZ(-1600px); }
+    #box li { position: absolute; top: -80px; left: -60px; width: 120px; height: 160px; background-color: rgba(5,100,80,0.2); border: rgba(125,255,255,0.25); box-shadow: 0 0 15px rgba(0,255,255,0.5); line-height: 160px; text-align: center; cursor: pointer; }
+    #box li span { font-size: 28px; font-weight: bold; text-shadow: 2px 2px 5px #000; color: #efebef; transform-style: preserve-3d; }
+    .mask { width: 100%; height: 100%; background-color: #3f4c5a; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <ul id="box">
+      <!-- <li><span>小鲁班</span></li> -->
+    </ul>
+    <div class="mask"></div>
+  </div>
+  
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    // 开启一个独立空间避免全局变量污染
+    (function() {
+      let 
+        index,
+        timer,
+        liElem, // 存放li元素
+      
+        oldCoordX, // 鼠标X、Y坐标值
+        oldCoordY,
+        nowCoordX,
+        nowCoordY,
+      
+        offsetStepX, // li元素水平、垂直、纵深方向偏移位
+        offsetStepY,
+        offsetStepZ,
+        
+        liElemCoordX, // li元素坐标
+        liElemCoordY,
+        liElemCoordZ,
+        
+        minusX = 0, // 鼠标X、Y差值
+        minusY = 0,
+        
+        liElemDegX = 0, // X、Y偏移度数
+        liElemDegY = 0,
+        
+        liElemMaxNum = 162, // li元素最大个数
+        
+        liElemRowMaxNum = 5, // li元素水平、垂直铺放的最大个数
+        liElemColMaxNum = 5,
+        
+        liElemDepDefault = -1000, // li 元素默认景深
+        
+        depDefault = liElemDepDefault-600, // 避免覆盖默认景深值
+        
+        liElemDepZ = liElemDepDefault-600, // 避免第一次拖动发生错位
+        
+        liElemOffsetX = 350, // li元素水平、垂直、纵深方向的最大间隔距离
+        liElemOffsetY = 350,
+        liElemOffsetZ = 350,
+        
+        aScreenNum = liElemRowMaxNum * liElemColMaxNum; // 单个方阵中li元素的总个数
+        
+        liElemDepMaxDist = parseInt(liElemMaxNum / aScreenNum); // li元素纵深方向最大间隔距离
+          
+        liElemfirstSiteX = parseInt('-' + liElemRowMaxNum / 2) * liElemOffsetX; // 计算第一个li元素的坐标点
+        liElemfirstSiteY = parseInt('-' + liElemColMaxNum / 2) * liElemOffsetY;
+        liElemfirstSiteZ = parseInt('-' + liElemDepMaxDist / 2) * liElemOffsetZ;
+        
+      // 指定一个区间，获取随机数
+      randomForm = (lowerValue, upperValue) => {
+        return Math.floor(Math.random() * (upperValue - lowerValue) + lowerValue);
+      }
+      
+      // 方阵
+      gradLayout = _ => {
+        let arr = [...Array(liElemMaxNum).keys()];
+        $('#box li').each(i => {
+          let index = randomForm(0, arr.length - 1);
+          // 计算li元素水平、垂直、纵深方向偏移位
+          offsetStepX = ((i % aScreenNum) % liElemRowMaxNum) * liElemOffsetX;
+          offsetStepY = parseInt((i % aScreenNum) / liElemColMaxNum) * liElemOffsetY;
+          offsetStepZ = parseInt(i / aScreenNum) * liElemOffsetZ;
+          // 当前li坐标值
+          liElemCoordX = liElemfirstSiteX + offsetStepX;
+          liElemCoordY = liElemfirstSiteY + offsetStepY;
+          liElemCoordZ = liElemfirstSiteZ + offsetStepZ;
+          // console.log(liElemCoordZ);
+          $('#box li').eq(arr[index]).css({
+            'transform': `translate3d(${liElemCoordX}px,${liElemCoordY}px,${liElemCoordZ}px)`,
+            'transition': '4s ease-in-out'
+          })
+          arr.splice(index, 1);
+        });
+      }
+      
+      main();
+      
+      function main() {
+        $([...Array(liElemMaxNum).keys()]).each(i => {
+          liElem = $('<li></li>');
+          $('#box').append(liElem);
+        });
+        
+        // 鼠标移入移出效果
+        $('#box li').hover(function() {
+          $(this).css({
+            'border': '1px solid rgba(125,255,255,0.75)',
+            'boxShadow': '0 0 15px rgba(0,255,255,0.75)',
+            'transition': '0s'
+          });
+        }, function() {
+          $(this).css({
+            'border': '1px solid rgba(125,255,255,0.25)',
+            'boxShadow': '0 0 15px rgba(0,255,255,0.5)',
+            'transition': '0s'
+          });
+        })
+        
+        // 鼠标拖动与滚轮效果
+        $(document).mousedown(function(e) {
+          e = e || window.e;
+          oldCoordX = e.clientX; // 上一个点的X、Y坐标
+          oldCoordY = e.clientY;
+          $(this).on('mousemove', e => {
+            nowCoordX = e.clientX; // 当前点的X、Y坐标
+            nowCoordY = e.clientY;
+            minusX = nowCoordX - oldCoordX; // 计算X、Y差值
+            minusY = nowCoordY - oldCoordY;
+            liElemDegX -= minusX * 0.1;
+            liElemDegY -= minusY * 0.1;
+            $('#box').css({
+              'transform': `translateZ(${liElemDepZ}px rotateX${liElemDegX}deg rotateY${liElemDegY}deg)`
+            })
+          }).mouseup(_ => {
+            $(document).off('mousemove'); // 当鼠标弹起解除移动
+            timer && clearInterval(timer); // 若上一个定时器存在，则将其删除
+            timer = setInterval(_ => { // 鼠标弹起后有缓动效果
+              minusX *= 0.95; // 缓动差值 
+              minusY *= 0.95;
+              liElemDegX -= minusY * 0.1; // 计算X、Y轴的移动度数
+              liElemDegY += minusX * 0.1;
+              Math.abs(minusX) < 0.05 && Math.abs(minusY) < 0.05 && clearInterval(timer); // 当差值超出指定范围时，则清除定时器
+              $('#box').css({
+                "transform":`translateZ(${liElemDepZ}px) rotateX(${liElemDegX}deg) rotateY(${liElemDegY}deg)`
+              })
+            }, 12);
+          }).on('mousewheel DOMmouseScroll', e => {
+            timer && clearInterval(timer); // 若上一个定时器存在，则将其删除
+            let step = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1))
+              || (e.originalEvent.detail && (e.originalEvent.detail > 0 ? 1 : -1));
+            liElemDepZ = depDefault += step * 90; // 计算滚轮滚动时Z 轴景深的步长
+            $('#box').css({
+              "transform": `translateZ(${liElemDepZ}px) rotateX(${liElemDegX}deg) rotateY(${liElemDegY}deg)`
+            })
+            timer = setInterval(_ => { // 设置缓动效果
+              step *= 0.6; // 缓动步长
+              liElemDepZ += step * 80;
+              Math.abs(step) < 0.000005 && clearInterval(timer);
+              $('#box').css({
+                "transform":`translateZ(${liElemDepZ}px) rotateX(${liElemDegX}deg) rotateY(${liElemDegY}deg)`
+              })
+            }, 12);
+          })
+        })
+        
+        // 加载布局
+        gradLayout();
+      }
+    })();
+  </script>
+</body>
+</html>

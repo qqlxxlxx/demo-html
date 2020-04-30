@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>显示隐藏动画</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 200px;
+				height: 200px;
+				background: skyblue;
+				display: none;
+			}
+		</style>
+		<!-- 基本
+			show([s,[e],[fn]])
+			hide([s,[e],[fn]])
+			滑动
+			slideDown([s],[e],[fn])
+			slideUp([s,[e],[fn]])
+			slideToggle([s],[e],[fn])
+			淡入淡出
+			fadeIn([s],[e],[fn])
+			fadeOut([s],[e],[fn])
+			fadeTo([[s],o,[e],[fn]])
+			fadeToggle([s,[e],[fn]])
+			自定义
+			animate(p,[s],[e],[fn])1.8*
+			stop([c],[j])1.7*
+			delay(d,[q])
+			finish([queue])
+ -->
+		<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+		<script>
+			$(function() {
+				//基本
+				$('Button').eq(0).click(function(){
+					$('div').show(1000,function(){
+						alert('显示动画执行完毕');
+					});
+				});
+				$('Button').eq(1).click(function(){
+					$('div').hide();
+				});
+				$('Button').eq(2).click(function(){
+					$('div').toggle();
+				});
+				//滑动
+				$('Button').eq(3).click(function(){
+					$('div').slideDown(1000,function(){
+						alert('展开动画执行完毕');
+					});
+				});
+				$('Button').eq(4).click(function(){
+					$('div').slideUp();
+				});
+				$('Button').eq(5).click(function(){
+					$('div').slideToggle();
+				});
+				//淡入淡出
+				$('Button').eq(6).click(function(){
+					$('div').fadeIn(1000,function(){
+						alert('淡入动画执行完毕');
+					});
+				});
+				$('Button').eq(7).click(function(){
+					$('div').fadeOut(2000);
+				});
+				$('Button').eq(8).click(function(){
+					$('div').fadeToggle(1000);
+				});
+				$('Button').eq(9).click(function(){
+					$('div').fadeTo(1000,0.3,function(){});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<button type="button">显示</button>
+		<button type="button">隐藏</button>
+		<button type="button">切换</button>
+		<br>
+		<button type="button">展开</button>
+		<button type="button">收起</button>
+		<button type="button">切换展开收起</button>
+		<br>
+		<button type="button">淡入</button>
+		<button type="button">淡出</button>
+		<button type="button">切换淡入淡出</button>
+		<button type="button">淡入到</button>
+		<div></div>
+	</body>
+</html>

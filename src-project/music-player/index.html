@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>music player</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <div class="player-mod">
+    <!-- 头部 -->
+    <div class="header-hd">
+      <h1>music player</h1>
+    </div>
+    <!-- 中部 -->
+    <div class="player-bd">
+      <div class="player-bd-in">
+        <!-- 歌曲列表 -->
+        <div class="songlist-container">
+          <div class="songlist-content">
+            <ul class="songlist-hd">
+              <li class="song-item">
+                <div class="number"></div>
+                <div class="songname">歌曲</div>
+                <div class="artist">歌手</div>
+                <div class="time">时长</div>
+              </li>
+            </ul>
+            <ul class="songlist-bd">
+              <!-- 通过js加载歌曲列表 -->
+            </ul>
+          </div>
+        </div>
+        <!-- 歌曲详情 -->
+        <div class="song-info">
+          <div class="song-info-in">
+            <a class="song-info-pic" href="javascript:;">
+              <img src="./source/告白气球.jpg" >
+            </a>
+            <div class="song-info-name">歌曲名：<a href="javascript:;"></a></div>
+            <div class="song-info-singer">歌手名：<a href="javascript:;"></a></div>
+            <div class="song-info-album">专辑名：<a href="javascript:;"></a></div>
+          </div>
+          <div class="song-info-lyric">
+            <ul id="lrc_wrap">
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 底部 -->
+    <div class="player-ft">
+      <a class="btn-prev" href="javascript:;"></a>
+      <a class="btn-play" href="javascript:;"></a>
+      <a class="btn-next" href="javascript:;"></a>
+      <div class="player-music">
+        <div class="player-song-info">
+          <span></span>
+          -
+          <span></span>
+          <span class="time-show"></span>
+        </div>
+        <div class="player-progress">
+          <div class="progress-bar">
+            <div class="progress-line">
+              <div class="progress-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="player-voice">
+        <a class="btn-voice" href="javascript:;"></a>
+        <div class="progress-bar">
+          <div class="progress-line">
+            <div class="progress-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 背景蒙版 -->
+  <div class="bg-mask"></div>
+  <div class="mask"></div>
+  <audio></audio>
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/lyric.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

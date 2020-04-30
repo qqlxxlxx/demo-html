@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//1.获取当前时间
+			//let date = new Date();
+			//console.log(date);
+			
+			//2.获取当前时间距离1970年1月1日(世界标准时间)起的毫秒
+			// console.log(Date.now());
+			// let date = new Date();
+			// console.log(date.valueOf());
+			
+			//3.创建指定时间
+			// let date1 = new Date("2019/07/10 17:36:20");
+			// console.log(date1);
+			//注:在创建指定时间的时候,如果月份是单独传入的,会多一个月
+			// let date2 = new Date(2019,08,10,17,36,20);
+			// console.log(date2);
+			
+			//4.获取指定时间年月日时分秒
+			// let date = new Date();
+			// console.log(date);
+			// console.log(date.getFullYear());
+			//注:通过getMonth方法获取到的月份会少一个月
+			// console.log(date.getMonth() + 1);
+			// console.log(date.getDate());
+			// console.log(date.getHours());
+			// console.log(date.getMinutes());
+			// console.log(date.getSeconds());
+			
+			//5.时间格式化
+			let date = new Date();
+			// 2019-7-10 17:48:29
+			let res = formartDate(date);
+			document.write(res)
+			
+			function formartDate(date){
+				return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+			}
+			//可使用正则表达式优化;
+			
+			//6.实例:计算时间差
+			//1000毫秒=1秒 60秒=1分钟 60分钟=1小时 24小时=1天
+			//以下两个时间差值 10天1小时29分40秒
+			let curDate = new Date("2020-4-19 22:30:20");
+			let remDate = new Date("2020-4-30 00:00:00");
+			//6.1得到两个时间之间的差值(毫秒值)
+			let differTime = remDate - curDate;
+			//本质上是 let differTime = remDate.valueOf() - remDate.valueOf();
+			//6.2得到两个时间之间的差值(秒)
+			let differSecond = differTime / 1000;
+			// console.log(differSecond);
+			//6.3利用相差的总秒数 / 每一天的秒数 = 相差的天数
+			let day = parseInt(differSecond / (24 * 60 * 60));
+			//6.4利用相差的总秒数 / 小时 % 24 ,即一共相差多少小时%24小时
+			let hour = parseInt(differSecond / (60 * 60) % 24);
+			//6.5利用相差的总秒数 / 分钟 % 60;
+			let minute = parseInt(differSecond / 60 % 60);
+			//6.5秒
+			let second = parseInt(differSecond % 60);
+			console.log(day+"天"+hour+"小时"+minute+"分"+second+"秒");
+		</script>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>table格式的99乘法表</title>
+  <style>
+    tr{ height: 35px; }
+    td{ width: 80px; }
+  </style>
+</head>
+<body>
+  <script>
+    var bg = "<table>";
+    for (var i = 1; i <= 9; i++) {
+      bg += "<tr>";
+      for (var j = 1; j <= i; j++) {
+        bg += "<td>" + i + "*" + j + "=" + i * j + "</td>";
+      }
+      bg += "</td>";
+    }
+    bg += "</table>";
+    document.write(bg);
+  </script>
+</body>
+</html>

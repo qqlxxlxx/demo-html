@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>关闭广告</title>
+	</head>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				height: 2000px;
+				background-color: #2C3E50;
+			}
+			.box-in{
+				position: fixed;
+				left: 0;
+				bottom: 0;
+			}
+			img:first-child{
+				width: 17px;
+				position: absolute;
+				right: 0;
+				top: 0px;
+			}
+			img:last-child{
+				width: 400px;
+			}
+		</style>
+	<body>
+		<div class="box">
+			<div class="box-in">
+				<img src="../img/close.png" alt="">
+				<img src="../img/264.jpg" alt="">
+			</div>
+		</div>
+		
+	<script>
+		let oImgBtn = document.querySelector("img:first-child");
+		oImgBtn.onclick = function(){
+			//1.找到按钮父元素
+			let oDiv = this.parentNode;
+			//console.log(oDiv);
+			//2.删除广告元素
+			oDiv.parentNode.removeChild(oDiv);
+		}
+	</script>
+	</body>
+</html>

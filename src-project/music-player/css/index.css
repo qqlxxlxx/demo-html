@@ -1,0 +1,305 @@
+/* == 公共样式 == */
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: poppin, Tahoma, Arial, 微软雅黑, sans-serif;
+  overflow: hidden;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.7;
+}
+a:hover {
+  opacity: 1;
+}
+li {
+  list-style: none;
+}
+
+/* == 页面样式 == */
+.player-mod {
+  position: relative;
+  z-index: 3;
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  color: rgba(225, 225, 225, .7);
+  font-size: 14px;
+  /* background-color: pink; */
+}
+/* 头部样式 */
+.header-hd {
+  font-size: 20px;
+  line-height: 2;
+  margin: 30px 0 50px;
+}
+h1 {
+  text-align: center;
+}
+
+/* 中部样式 */
+.player-bd {
+  position: relative;
+  min-height: 440px;
+}
+.player-bd-in {
+  /* overflow-y: auto; */
+}
+/* 歌曲列表 */
+.songlist-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 800px;
+  /* height: 440px; */
+  height: 100%;
+  overflow-y: auto;
+}
+.songlist-content {
+  border-top: 1px solid rgba(200, 200, 200, .1);
+  /* background-color: #666; */
+}
+.song-item {
+  position: relative;
+  display: flex;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid rgba(200, 200, 200, .1);
+}
+.song-item .number {
+  width: 45px;
+  text-align: right;
+}
+.song-item .number2{
+  background: url("../img/wave.gif") no-repeat 35px center;
+  color: transparent;
+}
+.song-item .songname {
+  flex: 1;
+  padding-left: 16px;
+}
+.song-item .artist {
+  width: 160px;
+}
+.song-item .time {
+  width: 70px;
+}
+.song-item .menu {
+  position: absolute;
+  top: 0;
+  right: 35px;
+  height: 100%;
+  padding-top: 7px;
+  box-sizing: border-box;
+  display: none;
+}
+.menu a {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: url(../img/icon_list_menu.png) no-repeat 0 0;
+}
+.menu .menu-play {
+  margin-right: 190px;
+  background-position: -120px 0;
+}
+.menu .menu-play2 {
+  background-position: -120px -200px !important;
+}
+.menu .menu-del {
+  background: url(../img/icon_list_menu.png) no-repeat -120px -160px;
+}
+/* 歌曲详情 */
+.song-info {
+  float: right;
+  width: 340px;
+  text-align: center;
+}
+.song-info-pic {
+  display: block;
+  opacity: 1;
+  width: 186px;
+  height: 186px;
+  margin: auto;
+  position: relative;
+}
+img {
+  display: block;
+  width: 100%;
+}
+.song-info-pic::after {
+  content: "";
+  display: block;
+  width: 201px;
+  height: 180px;
+  position: absolute;
+  top: 0;
+  left: 9px;
+  background: url(../img/album_cover_player.png) no-repeat 0 0;
+}
+.song-info-name {
+  margin-top: 15px;
+}
+.song-info-album {
+  margin-bottom: 30px;
+}
+.song-info-name, .song-info-singer, .song-info-album {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 28px;
+  line-height: 28px;
+}
+.song-info-lyric {
+  padding-top: 48px;
+  height: 96px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, .6) 15%,
+    rgba(255, 255, 255, 1) 25%,
+    rgba(255, 255, 255, 1) 75%,
+    rgba(255, 255, 255, .6) 85%,
+    rgba(255, 255, 255, 0) 100%);
+}
+.song-info-lyric li {
+  height: 24px;
+  line-height: 24px;
+}
+.on {
+  color: #31c27c;
+}
+
+
+/* 底部样式 */
+.player-ft {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  user-select: none;
+  background: rgba(25, 255, 20, .1);
+}
+.btn-prev, .btn-play, .btn-next, .btn-voice {
+  position: absolute;
+  display: block;
+  background: url(../img/player.png) 0 0;
+}
+.btn-prev {
+  top: 4px;
+  left: 0;
+  width: 29px;
+  height: 20px;
+  background-position: 0 -30px;
+}
+.btn-play {
+  top: 0;
+  left: 65px;
+  width: 21px;
+  height: 29px;
+}
+.btn-play.btn-play-pause {
+  background-position: -30px 0;
+}
+.btn-next {
+  top: 4px;
+  left: 132px;
+  width: 19px;
+  height: 20px;
+  background-position: 0 -52px;
+}
+.player-music {
+  margin: 0 400px 0 208px;
+}
+.player-song-info {
+  position: relative;
+  height: 21px;
+  line-height: 21px;
+}
+.player-song-info .time-show {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.player-progress {
+  width: 100%;
+  padding: 7px 0;
+  /* background: #31C27C; */
+  cursor: pointer;
+}
+.progress-bar {
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.progress-line {
+  position: relative;
+  width: 0;
+  height: 100%;
+  background-color: #fff;
+}
+.progress-dot {
+  position: absolute;
+  top: -4px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.player-voice {
+  position: absolute;
+  top: 0;
+  right: 100px;
+  width: 80px;
+  padding: 13px 0 7px 0;
+  cursor: pointer;
+}
+.player-voice .progress-line {
+  width: 100%;
+}
+.btn-voice {
+  top: 4px;
+  left: -36px;
+  width: 26px;
+  height: 21px;
+  background-position: 0 -144px;
+}
+.btn-voice2 {
+  background-position: 0 -182px;
+}
+
+
+/* == 背景蒙版 == */
+.bg-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-image: url(../source/告白气球.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  filter: blur(70px);
+  transform: scale(1.08);
+  opacity: .9;
+}
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+}

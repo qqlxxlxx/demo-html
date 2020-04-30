@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>登录校验+封装+页面跳转</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    input:-webkit-autofill,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px white inset;
+      -webkit-text-fill-color: #333;
+    }
+    input[type=text]:focus, input[type=password]:focus, textarea:focus {
+      -webkit-box-shadow: 0 0 0 1000px white inset;
+    }
+    .login-content {
+      margin: 20px auto 0;
+      width: 300px;
+    }
+    .panel {
+      height: 70px;
+    }
+    .panel .btn {
+      width: 100%;
+      height: 30px;
+      outline: 0;
+      border: 1px solid #333;
+      line-height: 30px;
+      text-indent: 1em;
+    }
+    .panel .error-tip {
+      color: #e82f2f;
+    }
+    .msg-tip {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div action="" class="login-content">
+    <div class="panel">
+      <input type="text" class="phone btn" name="phone" placeholder="手机号" autocomplete="off" />
+      <p class="error-tip"></p>
+    </div>
+    <div class="panel">
+      <input type="password" class="password btn" name="password" placeholder="密码" />
+      <p class="error-tip"></p>
+    </div>
+    <div class="panel">
+      <button class="login">立即登录</button>
+    </div>
+    <div class="msg-tip">
+      <p>请输入正确的信息！</p>
+    </div>
+  </div>
+  <script src="https://cdn.bootcss.com/jquery/1.4.2/jquery.js"></script>
+  <script>
+    $(function() {
+      /* 校验 */
+      // 成为焦点
+      $('.login-content input').focus(function() {
+        $(this).next().stop().hide();
+      });
+      // 失去焦点
+      $('.login-content input').blur(function() {
+        var pattern, text1, text2;
+        switch ($(this).attr('name')) {
+          case 'phone':
+            pattern = /^(13[0-9]|14[5|7]|15[0-9])\d{8}$/;
+            text1 = '手机号不能为空';
+            text2 = '手机号格式不正确';
+            break;
+          case 'password':
+            pattern = /^[0-9A-Za-z]\w{5,17}$/;
+            text1 = '密码不能为空';
+            text2 = '密码格式不正确';
+            break;
+        }
+        checkTip($(this), pattern, text1, text2);
+      });
+      // 公共方法
+      function checkTip(cur, pattern, text1, text2) {
+        var value = cur.val();
+        if (value === '') {
+          cur.next().stop().show().text(text1)
+        } else if (!pattern.test(value)) {
+          cur.next().stop().show().text(text2)
+        } else {
+          cur.next().stop().hide();
+        }
+      }
+      
+      /* 提交 */
+      $('.login').click(function() {
+        var _phone = $.trim($('.phone').val().trim()),
+            _psd = $.trim($('.password').val().trim());
+        // 提交校验
+        if (!_phone || !_psd || $('.error-tip').is(':visible')) {
+          $('.msg-tip').show();
+        } else {
+          $.ajax({
+            type: 'get',
+            url: 'http://localhost:3000/login',
+            data: { // 传给后端的值
+              phone: _phone,
+              password: _psd
+            },
+            dataType: 'json', // 返回值类型
+            success: function(res) {
+              if (!res) {
+                $('.msg-tip').show().text('登陆失败');
+                return;
+              }
+              if (res[0].code == '200') {
+                $('.msg-tip').hide();
+                window.location.href = 'https://www.baidu.com/'
+              }
+            },
+            error: function(err) {}
+          });
+        }
+      })
+    })
+  </script>
+</body>
+</html>

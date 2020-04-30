@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>禁用按钮</title>
+    <style>
+      div { width: 800px; margin: 0 auto; }
+    </style>
+  </head>
+  <body>
+    <div>
+<pre>
+  /*
+  需求：输入框没有内容就禁用按钮
+  */
+  let oText = document.querySelector("input[type=text]");
+  let oSubmit = document.querySelector("input[type=submit]");
+  
+  // 在JS中如果HTML标签属性名称和取值一样的时候,那么JS会返回true，否则false
+  console.log(oSubmit.disabled)
+  // oSubmit.disabled = true;
+  oText.oninput = function() {
+    console.log(this.value.length);
+    oSubmit.disabled = this.value.length === 0;
+  }
+  
+  // 注:通过代码给input设置的数据,不会触发oninput事件 -- oText.value = "abc";
+</pre>
+      
+      <form action="">
+        <input type="text" placeholder="请输入搜索关键字">
+        <input type="submit" value="搜索" disabled="disabled">
+      </form>
+    </div>
+
+    <script>
+      /*
+			需求：输入框没有内容就禁用按钮
+			*/
+      let oText = document.querySelector("input[type=text]");
+      let oSubmit = document.querySelector("input[type=submit]");
+
+      // 在JS中如果HTML标签属性名称和取值一样的时候,那么JS会返回true，否则false
+      console.log(oSubmit.disabled)
+      // oSubmit.disabled = true;
+      oText.oninput = function() {
+        console.log(this.value.length);
+        oSubmit.disabled = this.value.length === 0;
+      }
+
+      // 注:通过代码给input设置的数据,不会触发oninput事件 -- oText.value = "abc";
+    </script>
+  </body>
+</html>

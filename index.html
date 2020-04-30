@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>MY DEMO</title>
+  <style>
+    * { margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    a { text-decoration: none; transition: .3s; }
+    .container { width: 1200px; min-height: 100%; margin: 0 auto; background-color: #f6f6f6; text-align: center; user-select: none; }
+    h1 { padding-top: 20px; margin-bottom: 50px; text-align: center; }
+    .navs { display: flex; margin-bottom: 50px; padding: 0 10px; }
+    .nav { margin: 0 10px; padding: 20px 0; flex: 1; font-size: 18px; font-weight: bold; cursor: pointer; transition: .3s; }
+    .nav:hover { background-color: #eee; }
+    .nav.current { text-shadow: 2px 2px 6px #333; background-color: #eee; }
+    .section { display: flex; flex-wrap: wrap; }
+    .link { width: 20%; margin-bottom: 50px; }
+    .link a { color: #1d63ab; }
+    .link a:hover { color: #9226bf; }
+    .section { display: none; }
+    .section.current { display: flex; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">MY DEMO</h1>
+    <div class="navs">
+      <div class="nav">Small Project</div>
+      <div class="nav">JS</div>
+      <div class="nav">jQuery</div>
+      <div class="nav">From Web</div>
+      <div class="nav">Other</div>
+    </div>
+    <div class="nav-content">
+      <div class="section">
+        <div class="link"><a href="src-project/masonry-layouts/index.html">瀑布流</a></div>
+        <div class="link"><a href="src-project/snake/index.html">贪吃蛇</a></div>
+        <div class="link"><a href="src-project/music-player/index.html">音乐播放器</a></div>
+      </div>
+      <div class="section">
+        <div class="link"><a href="./src-js/pages/09-定时器.html">定时器</a></div>
+        <div class="link"><a href="./src-js/pages/10-关闭广告.html">关闭广告</a></div>
+        <div class="link"><a href="./src-js/pages/11-图片展示.html">鼠标移入图片展示</a></div>
+        <div class="link"><a href="./src-js/pages/12-简易轮播图.html">简易轮播图</a></div>
+        <div class="link"><a href="./src-js/pages/13-移入移出菜单.html">移入移出菜单</a></div>
+        <div class="link"><a href="./src-js/pages/14-表单校验.html">表单校验</a></div>
+        <div class="link"><a href="./src-js/pages/15-焦点事件.html">焦点事件</a></div>
+        <div class="link"><a href="./src-js/pages/16-表单效果.html">表单效果</a></div>
+        <div class="link"><a href="./src-js/pages/17-TAB选项卡.html">TAB选项卡</a></div>
+        <div class="link"><a href="./src-js/pages/18-全选反选.html">全选反选</a></div>
+        <div class="link"><a href="./src-js/pages/20-时间对象.html">时间对象</a></div>
+        <div class="link"><a href="./src-js/pages/21-倒计时.html">倒计时</a></div>
+        <div class="link"><a href="./src-js/pages/24-长图效果.html">长图效果</a></div>
+        <div class="link"><a href="./src-js/pages/25-匀速动画.html">匀速动画</a></div>
+        <div class="link"><a href="./src-js/pages/26-缓动动画.html">缓动动画</a></div>
+        <div class="link"><a href="./src-js/pages/50-navigator.html">navigator</a></div>
+        <div class="link"><a href="./src-js/pages/51-Location地址栏.html">Location地址栏</a></div>
+        <div class="link"><a href="./src-js/pages/52-history.html">history</a></div>
+        <div class="link"><a href="./src-js/pages/53-获取元素宽高其他方式.html">获取元素宽高其他方式</a></div>
+        <div class="link"><a href="./src-js/pages/54-offsetLeftTop.html">offsetLeftTop</a></div>
+        <div class="link"><a href="./src-js/pages/55-offsetParent.html">offsetParent</a></div>
+        <div class="link"><a href="./src-js/pages/56-client.html">client</a></div>
+        <div class="link"><a href="./src-js/pages/57-sroll相关属性.html">sroll相关属性</a></div>
+        <div class="link"><a href="./src-js/pages/58-三大家族.html">三大家族</a></div>
+        <div class="link"><a href="./src-js/pages/59-获取网页宽高.html">获取网页宽高</a></div>
+        <div class="link"><a href="./src-js/pages/60-星空背景.html">星空背景</a></div>
+        <div class="link"><a href="./src-js/pages/61-弹性导航.html">弹性导航</a></div>
+        <div class="link"><a href="./src-js/pages/62-拖拽效果.html">拖拽效果</a></div>
+        <div class="link"><a href="./src-js/pages/63-大图展示.html">大图展示</a></div>
+        <div class="link"><a href="./src-js/pages/64-网页滚动距离.html">网页滚动距离</a></div>
+        <div class="link"><a href="./src-js/pages/65-吸顶效果_返回顶部.html">吸顶效果_返回顶部</a></div>
+        <div class="link"><a href="./src-js/pages/66-楼层效果.html">楼层效果</a></div>
+        <div class="link"><a href="./src-js/pages/67-橱窗展示.html">橱窗展示</a></div>
+        <div class="link"><a href="./src-js/pages/68-函数防抖.html">函数防抖</a></div>
+        <div class="link"><a href="./src-js/pages/69-函数节流.html">函数节流</a></div>
+        <div class="link"><a href="./src-js/pages/81-视频播放器结构.html">视频播放器结构</a></div>
+      </div>
+      <div class="section">
+        <div class="link"><a href="src-jq/pages/01-显示隐藏动画.html">显示隐藏动画</a></div>
+        <div class="link"><a href="src-jq/pages/02-折叠菜单.html">折叠菜单</a></div>
+        <div class="link"><a href="src-jq/pages/03-下拉菜单+弹窗广告.html">下拉菜单+弹窗广告</a></div>
+        <div class="link"><a href="src-jq/pages/04-自定义动画.html">自定义动画</a></div>
+        <div class="link"><a href="src-jq/pages/05-无限循环滚动.html">无限循环滚动轮播</a></div>
+      </div>
+      <div class="section">
+        <div class="link"><a href="src-study/pages/3D分层悬浮效果.html">3D分层悬浮效果</a></div>
+        <div class="link"><a href="src-study/pages/动画效果登录按钮.html">动画效果登录按钮</a></div>
+        <div class="link"><a href="src-study/pages/动态滑动登录框.html">动态滑动登录框</a></div>
+        <div class="link"><a href="src-study/pages/动态搜索框.html">动态搜索框</a></div>
+        <div class="link"><a href="src-study/pages/加载效果.html">加载效果</a></div>
+        <div class="link"><a href="src-study/pages/图片悬浮效果.html">图片悬浮效果</a></div>
+        <div class="link"><a href="src-study/pages/荧光边框.html">荧光边框</a></div>
+        <div class="link"><a href="src-study/pages/自适应导航页.html">自适应导航页</a></div>
+        <div class="link"><a href="src-study/pages/自适应相册.html">自适应相册</a></div>
+        <div class="link"><a href="src-study/pages/动画的眼睛跟随鼠标光标.html">动画的眼睛跟随鼠标光标</a></div>
+      </div>
+      <div class="section">
+        <div class="link"><a href="src-other/百度搜索框_jsonp.html">jsonp实现百度搜索框</a></div>
+        <div class="link"><a href="src-other/表单登录校验.html">表单登录校验</a></div>
+        <div class="link"><a href="src-other/滑块校验.html">拖动滑块校验</a></div>
+        <div class="link"><a href="src-other/图片颜色提取.html">图片颜色提取</a></div>
+        <div class="link"><a href="src-other/table格式的99乘法表.html">table格式的99乘法表</a></div>
+        <div class="link"><a href="src-other/本地图片及时预览.html">本地图片及时预览</a></div>
+        <div class="link"><a href="src-other/拖动效果.html">拖动效果</a></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // 浏览器前进和后退后，之前设置的样式又重置了
+    // 目前使用sessionStorage来记住当前选中索引值
+    (function() {
+      let oNavs = document.querySelectorAll('.nav');
+      let oContent = document.querySelectorAll('.section');
+      let preIndex = parseInt(sessionStorage.getItem('index')) || 0;
+      oNavs[preIndex].className = 'nav current';
+      oContent[preIndex].className = 'section current';
+      // console.log(preIndex);
+      for (let i = 0; i < oNavs.length; i++) {
+        oNavs[i].onclick = function() {
+          if (i === preIndex) return
+          oNavs[preIndex].className = 'nav';
+          oContent[preIndex].className = 'section';
+          this.className = 'nav current';
+          oContent[i].className = 'section current';
+          preIndex = i;
+          sessionStorage.setItem('index', preIndex);
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				width: 100%;
+				height: 100%;
+				background-color: #000000;
+				overflow: hidden;
+			}
+			span{
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				background: url(../img/star.png) no-repeat;
+				background-size: 100%;
+				animation: flash 1s alternate infinite; /* 执行1秒,往返,无限执行 */
+				position: absolute;
+			}
+			@keyframes flash{
+				from{
+					opacity: 0;
+				}
+				to{
+					opacity: 1;
+				}
+			}
+			span:hover{
+				transform: scale(2.5, 2.5) rotate(180deg) !important;
+				transition: all 1s;
+			}
+		</style>
+	</head>
+	<body>
+		<span></span>
+		
+		<script>
+			//1.获取
+			// let {width, heigth} = getSreen(); //IE不支持
+      let width = getSreen().width;
+      let heigth = getSreen().heigth;
+			
+			//2.动态创建
+			for(let i = 0; i < 100; i++){
+				//创建
+				let oSpan = document.createElement("span");
+				document.body.appendChild(oSpan);
+				//随机位置
+				let x = Math.random() * (width - 30);
+				let y = Math.random() * (heigth - 30);
+				oSpan.style.left = x + "px";
+				oSpan.style.top = y + "px";
+				//随机缩放比例
+				let scale = Math.random() * 2;
+				oSpan.style.transform = 'scale(' + scale + ',' + scale + ')';
+				//随机显示隐藏动画
+				let time = Math.random() * 2;
+				oSpan.style.animationDelay = time + "s";
+			}
+			
+			function getSreen(){
+				let width, heigth;
+				if(window.innerWidth){
+					width = window.innerWidth;
+					heigth = window.innerHeight;
+				}else if(document.compatMode === "BackCompat"){
+					width = window.document.body.clientWidth;
+					heigth = window.document.body.clientHeight;
+				}else{
+					width = document.documentElement.clientWidth;
+					heigth = document.documentElement.clientHeight;
+				}
+				return{
+					width:width,
+					heigth:heigth
+				}
+			}
+			
+		</script>
+	</body>
+</html>

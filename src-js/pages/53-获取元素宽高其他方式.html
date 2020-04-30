@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      div {
+        width: 100px;
+        height: 100px;
+        padding: 50px;
+        border: 50px solid black;
+        background-color: pink;
+        /* margin-top: 10px; */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+
+    <script>
+      let div = document.getElementById("box");
+      // div.style.width = "150px"; //可以设置
+
+      // 1.getComputedStyle获取宽高,IE9以下不能使用
+      var style = getComputedStyle(div);
+      // style.width = "150px"; //不能设置宽高
+      console.log(style.width); //100px
+
+      // 2.currentStyle,支持低级浏览器
+      // var style = div.currentStyle;
+      // style.width = "150px"; //不能设置宽高
+      // console.log(style.width); //？
+
+      // 3.style属性获取宽高
+      console.log(div.style.width); //只能获取到行内,获取不到内联外联样式,js设置后可获取
+
+      // 4.offsetHeight/offsetWidth,支持获取不能设置
+      // div.offsetWidth = "150px"; //不报错,但设置不到
+      console.log(div.offsetHeight); //300
+    </script>
+  </body>
+</html>

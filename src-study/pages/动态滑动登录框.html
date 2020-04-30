@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+  <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge" /> -->
+  <title>动态滑动登录框</title>
+  <style type="text/css">
+    *{
+      font-family: "montserrat",sans-serif;
+    }
+    body{
+      margin: 0;
+      padding: 0;
+      background: #333;
+    }
+    .login-box{
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100vh;
+      background-image: linear-gradient(
+        45deg,
+        #9fbaa8,
+        #31354c
+      );
+      transition: 0.4s;
+    }
+    .login-form{
+      /* background: darkcyan; */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      color: white;
+      text-align: center;
+    }
+    .login-form h1{
+      font-weight: 400;
+      margin-top: 0;
+    }
+    .txtb{
+      display: block;
+      box-sizing: border-box;
+      width: 240px;
+      background: #ffffff28;
+      border: 1px solid white;
+      padding: 10px 20px;
+      color: white;
+      outline: none;
+      margin: 10px 0;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .login-btn{
+      width: 240px;
+      background: #2c3e50;
+      border: 0;
+      color: white;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .hide-login-btn{
+      color: #000;
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      cursor: pointer;
+      font-size: 24px;
+      font-size: 30px;
+      opacity: 0.7;
+      transform: rotate(45deg);
+    }
+    .show-login-btn{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      color: white;
+      border: 2px solid;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .showed{
+      left: 0;
+    }
+  </style>
+  
+</head>
+<body>
+  <div class="show-login-btn">
+    -> Show Login Form
+  </div>
+  <div class="login-box">
+    <div class="hide-login-btn">
+      +
+    </div>
+    <form action="加载效果.html" class="login-form" method="post">
+      <h1>Welcome</h1>
+      <input class="txtb" type="text" name="" placeholder="Username">
+      <input class="txtb" type="password" name="" placeholder="Password">
+      <input class="login-btn" type="submit" value="Login">
+    </form>
+  </div>
+  
+  <script>
+    function hasClass(element, clssname) {
+      return element.className.match(new RegExp('(\\s|^)' + clssname + '(\\s|$)'))
+    }
+    function addClass(element, clssname) {
+      if (!this.hasClass(element, clssname)) element.className += ' ' + clssname
+    }
+    function removeClass(element, clssname) {
+      if (hasClass(element, clssname)) {
+        var reg = new RegExp('(\\s|^)' + clssname + '(\\s|$)')
+        element.className = element.className.replace(reg, ' ')
+      }
+    }
+    function toggleClass(element, clssname) {
+      if (hasClass(element, clssname)) {
+        removeClass(element, clssname)
+      } else {
+        addClass(element, clssname)
+      }
+    }
+    var loginBox = document.getElementsByClassName('login-box')
+    var showBtn = document.getElementsByClassName('show-login-btn')
+    var hideBtn = document.getElementsByClassName('hide-login-btn')
+    showBtn[0].addEventListener('click', function() {
+      toggleClass(loginBox[0], 'showed')
+    })
+    hideBtn[0].addEventListener('click', function() {
+      toggleClass(loginBox[0], 'showed')
+    })
+  </script>
+  
+  <!-- <script>
+    $(".show-login-btn").on("click",function(){
+      $(".login-box").toggleClass("showed");
+    });
+    $(".hide-login-btn").on("click",function(){
+      $(".login-box").toggleClass("showed");
+    });
+  </script> -->
+</body>
+</html>

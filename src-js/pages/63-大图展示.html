@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+        position: relative;
+				width: 350px;
+				height: 350px;
+				border: 1px solid #ddd;
+				margin-top: 100px;
+				margin-left: 100px;
+			}
+			.small-box>span{
+				display: inline-block;
+				width: 250px;
+				height: 250px;
+				background-color: rgba(250,250,100,0.3);
+				position: absolute;
+				top: 0;
+				left: 0;
+				visibility: hidden;
+			}
+			.big-box{
+				width: 500px;
+				height: 500px;
+				border: 1px solid #ddd;
+				overflow: hidden;
+				position: absolute;
+				left: 350px;
+				top: -1px;
+				visibility: hidden;
+			}
+			.big-box>img{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+      img{
+        vertical-align: top;
+      }
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="small-box">
+				<img src="../img/small.jpg" >
+				<span></span>
+			</div>
+			<div class="big-box">
+				<img src="../img/big.jpg" >
+			</div>
+		</div>
+		
+		<script>
+			let smallDiv = document.querySelector(".small-box");
+			let bigDiv = document.querySelector(".big-box");
+			let bigImg = document.querySelector(".big-box>img");
+			let mask = document.querySelector("span");
+			let box = document.querySelector(".box");
+			
+			smallDiv.onmouseenter = function(){
+				mask.style.visibility = "visible";
+				bigDiv.style.visibility = "visible";
+			}
+			smallDiv.onmouseleave = function(){
+				mask.style.visibility = "hidden";
+				bigDiv.style.visibility = "hidden";
+			}
+			smallDiv.onmousemove = function(event){
+				event = event || window.event;
+				let mouseX = event.pageX - box.offsetLeft - (mask.offsetWidth / 2);
+				let mouseY = event.pageY - box.offsetTop - (mask.offsetHeight / 2);
+				
+				mouseX = mouseX < 0 ? 0 : mouseX;
+				mouseY = mouseY < 0 ? 0 : mouseY;
+				maxMouseX = smallDiv.offsetWidth - mask.offsetWidth;
+				maxMouseY = smallDiv.offsetHeight - mask.offsetHeight; // img会撑开父元素3px,css需设置vertical-align: ;
+				mouseX = mouseX > maxMouseX ? maxMouseX : mouseX;
+				mouseY = mouseY > maxMouseY ? maxMouseY : mouseY;
+				
+				mask.style.left = mouseX + "px";
+				mask.style.top = mouseY + "px";
+				
+				//蒙版移动的距离/蒙版最大能移距离 = 大图移动的距离/大图最大能移距离
+				let maxBigX = bigDiv.offsetWidth - bigImg.offsetWidth;
+				let maxBigY = bigDiv.offsetHeight - bigImg.offsetHeight;
+				let bigX = mouseX / maxMouseX * maxBigX;
+				let bigY = mouseY / maxMouseY * maxBigY;
+				bigImg.style.left = bigX + "px";
+				bigImg.style.top = bigY + "px";
+			}
+		</script>
+	</body>
+</html>

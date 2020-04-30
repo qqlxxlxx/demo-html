@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>函数防抖debounce</title>
+		<style>
+			div{
+				background: green;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <input type="text"> -->
+		<div></div>
+		<script>
+			/* 
+			1 函数防抖是优化高频执行js代码的手段 
+			可以让被调用的函数在高频操作过程中只被执行一次
+			2 作用是减少代码执行次数，提升网页性能
+			3 应用场景：oninput / onmousemove / onscroll / onresize 等事件
+			*/
+			// let oInput = document.querySelector('input');
+			// let timerId = null;
+			// oInput.oninput = function(ev) {
+			// 	timerId && clearTimeout(timerId);
+			// 	timerId = setTimeout(function() {
+			// 		console.log('发送网络请求');
+			// 	}, 500)
+			// }
+			// 函数防抖练习
+			let oDiv = document.querySelector('div');
+			resetSize();
+			function resetSize() {
+				let width = innerWidth;
+				let height = innerHeight;
+				oDiv.style.width = width / 2 + 'px';
+				oDiv.style.height = height / 2 + 'px';
+			}
+			let timerId = null;
+			window.onresize = function() {
+				timerId && clearTimeout(timerId);
+				timerId = setTimeout(function() {
+					resetSize();
+					console.log('尺寸变化');
+				},500)
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>scroll</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      div {
+        width: 100px;
+        height: 100px;
+        padding: 50px;
+        border: 50px solid black;
+        background-color: pink;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      内容<br>内容<br>内容<br>内容<br>内容<br>
+      内容<br>内容<br>内容<br>内容<br>内容<br>
+      内容<br>内容<br>内容<br>内容<br>内容<br>
+    </div>
+
+    <script>
+      let div = document.getElementById("box");
+
+      //1.内容没有超出范围时:内容宽度+内边距
+      console.log(div.scrollWidth);
+      console.log(div.scrollHeight);
+
+      //2.内容超出范围时:内容宽度+内边距+超出宽度
+      console.log(div.scrollWidth);
+      console.log(div.scrollHeight);
+
+      //3.scrollTop/scrollLeft
+      // console.log(div.scrollTop); 
+      div.onscroll = function() {
+        console.log(div.scrollTop);
+      }
+    </script>
+  </body>
+</html>

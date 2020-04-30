@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				width: 100%;
+				height: 100%;
+        overflow: hidden;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+			}
+      button{
+        margin-left: 50px;
+      	background-color: skyblue;
+      }
+			.mask{
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+        z-index: 3;
+				background-color: rgba(240,240,255,0.6);
+				display: none;
+			}
+			.login{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+        z-index: 10;
+        width: 300px;
+        height: 200px;
+        background-color: pink;
+				display: none;
+				cursor: move;
+			}
+			span{
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				background-color: red;
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<button>Login</button>
+		<a href="#">假链接</a>
+		<div class="mask"></div>
+		<div class="login">
+			<span></span>
+		</div>
+		
+		<script>
+			let btn = document.querySelector("button");
+			let maskDiv = document.querySelector(".mask");
+			let loginDiv = document.querySelector(".login");
+			let closeBtn = document.querySelector("span");
+			
+			btn.onclick = function(){
+				maskDiv.style.display = "block";
+				loginDiv.style.display = "block";
+			}
+			
+			closeBtn.onclick = function(){
+				maskDiv.style.display = "none";
+				loginDiv.style.display = "none";
+			}
+			
+			loginDiv.onmousedown = function(event1){
+        event1.stopPropagation();
+				event1 = event1 || window.event1;
+				let x = event1.pageX - loginDiv.offsetLeft;
+				let y = event1.pageY - loginDiv.offsetTop;
+				// console.log(loginDiv.offsetLeft);
+				loginDiv.onmousemove = function(event2){
+					event2 = event2 || window.event2;
+					let offsetX = event2.pageX - x;
+					let offsetY = event2.pageY - y;
+					loginDiv.style.left = offsetX + "px";
+					loginDiv.style.top = offsetY + "px";
+				}
+			}
+			
+			loginDiv.onmouseup = function(event){
+				loginDiv.onmousemove = null;
+			}
+      
+      document.onmouseup = function(e) {
+        if(e.clientX > window.innerWidth || e.clientY < 0 || e.clientX < 0 || e.clientY > window.innerHeight) {
+          // 在这加入你想执行的代码，此条件下鼠标已经在浏览器外
+          loginDiv.onmousemove = null;
+        }
+      }
+      
+      //注:鼠标移出浏览器外会触发下层选中,设置css属性user-select: none;
+		</script>
+	</body>
+</html>

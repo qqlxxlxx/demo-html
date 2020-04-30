@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      *{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 300px;
+				margin: 30px auto;
+				box-shadow: 0 0 5px #000;
+				padding: 20px;
+				box-sizing: border-box;
+			}
+			h3{
+				text-align: center;
+				border-bottom: 1px solid #ccc;
+			}
+			ul li{
+				line-height: 25px;
+				list-style: none;
+				border-bottom: 1px solid #ccc;
+			}
+			.btn{
+				text-align: center;
+				margin-top: 15px;
+			}
+		</style>
+  </head>
+  <body>
+    <div class="box">
+      <h3>歌曲</h3>
+      <ul>
+        <li><input type="checkbox" checked="checked">&nbsp;七里香</li>
+        <li><input type="checkbox">&nbsp;遗失的美好</li>
+        <li><input type="checkbox">&nbsp;江南</li>
+        <li><input type="checkbox">&nbsp;我让你走了</li>
+        <li><input type="checkbox">&nbsp;男人海洋</li>
+        <li><input type="checkbox">&nbsp;Lydia</li>
+        <li><input type="checkbox">&nbsp;我们的爱</li>
+        <li><input type="checkbox">&nbsp;黑白画映</li>
+        <li><input type="checkbox">&nbsp;爱我还是他</li>
+      </ul>
+      <div class="btn">
+        <button id="all_check">全选</button>
+        <button id="cancel_check">取消全选</button>
+        <button id="revers_check">反选</button>
+      </div>
+    </div>
+
+    <script>
+      //1.拿到需要操作的元素
+      let oItems = document.querySelectorAll("input");
+      let allCheck = document.querySelector("#all_check");
+      let cancelCheck = document.querySelector("#cancel_check");
+      let reversCheck = document.querySelector("#revers_check");
+
+      //2.监听按钮的点击
+      allCheck.onclick = function() {
+        oItems.forEach(function(item) {
+          item.checked = true;
+        })
+      }
+      cancelCheck.onclick = function() {
+        oItems.forEach(function(item) {
+          item.checked = false;
+        })
+      }
+      reversCheck.onclick = function() {
+        oItems.forEach(function(item) {
+          item.checked = !item.checked;
+        })
+      }
+    </script>
+  </body>
+</html>

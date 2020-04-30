@@ -1,0 +1,48 @@
+<!-- <!DOCTYPE html> -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>网页可视区域宽高</title>
+	</head>
+	<body>
+		
+		<script>
+			//1. innerWidth/innerHeight，支持IE9及以上
+			// console.log(window.innerWidth);
+			// console.log(window.innerHeight);
+			
+			//2.可用于IE9以下的标准模式中获取
+			// console.log(document.documentElement); //整个网页
+			// console.log(document.documentElement.clientWidth);
+			// console.log(document.documentElement.clientHeight);
+			//浏览器在渲染网页的时候有两种模式:"标准模式"/"混杂模式（怪异模式）".默认是标准模式,当未写文档声明就会按混杂模式（怪异模式）进行渲染
+			// console.log(document.compatMode); //默认,CSS1Compat. 混杂BackCompat
+			//3.混杂模式获取的方法
+			// console.log(document.body.clientWidth);
+			// console.log(document.body.clientHeight);
+			
+			
+			let {width, heigth} = getSreen();
+      console.log(width, heigth)
+      
+      //封装兼容方法
+			function getSreen(){
+				let width, heigth;
+				if(window.innerWidth){
+					width = window.innerWidth;
+					heigth = window.innerHeight;
+				}else if(document.compatMode === "BackCompat"){
+					width = window.document.body.clientWidth;
+					heigth = window.document.body.clientHeight;
+				}else{
+					width = document.documentElement.clientWidth;
+					heigth = document.documentElement.clientHeight;
+				}
+				return{
+					width:width,
+					heigth:heigth
+				}
+			}
+		</script>
+	</body>
+</html>

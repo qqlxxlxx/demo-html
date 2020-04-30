@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .father {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+        margin-top: 100px;
+        margin-left: 100px;
+        overflow: hidden;
+        /*  */
+      }
+      .son {
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+        margin-top: 100px;
+        margin-left: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="son"></div>
+    </div>
+
+    <script>
+      let sonDiv = document.querySelector(".son");
+
+      //offsetLeft/sonDiv.offsetTop，获取元素到最近一个定位祖元素先的偏移位,祖先元素没有定位就获取到距离body的偏移位
+      sonDiv.onclick = function() {
+        console.log(sonDiv.offsetLeft);
+        console.log(sonDiv.offsetTop);
+      }
+    </script>
+  </body>
+</html>

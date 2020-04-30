@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			figure{
+				position: relative;
+				width: 800px;
+				height: 500px;
+				margin: 100px auto;
+			}
+			figcaption{
+				font-size: 30px;
+				text-align: center;
+				background: lightskyblue;
+			}
+			video{
+				width: 800px;
+			}
+			.controls{
+				width: 100%;
+				height: 40px;
+				position: absolute;
+				bottom: 10px;
+				background: rgba(200,200,255,.5);
+			}
+			.controls > *{
+				position: absolute;
+				bottom: 10px;
+				height: 20px;
+				background: rgba(255,255,255,.7);
+			}
+			#play{
+				left: 20px;
+				width: 20px;
+        border-radius: 15px;
+        text-align: center;
+			}
+			.progress{
+				width: 500px;
+				left: 80px;
+				overflow: hidden;
+			}
+			.progress .line{
+				width: 100px;
+				height: 100%;
+				background: #fff;
+			}
+			.full{
+				right: 20px;
+				width: 20px;
+        height: 20px;
+        text-align: center;
+			}
+      img{
+        width: 100%;
+        vertical-align: middle;
+      }
+		</style>
+	</head>
+	<body>
+		<figure>
+			<figcaption>视频播放器</figcaption>
+			<!-- <video src="../img/Av14066891-P8.mp4"></video> -->
+      <img src="../img/video.png"></img>
+			<div class="controls">
+				<div id="play">播</div>
+				<div class="progress">
+					<div class="line"></div>
+				</div>
+				<span></span>
+				<div class="full">全</div>
+			</div>
+		</figure>
+	</body>
+</html>

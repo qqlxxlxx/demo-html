@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>本地图片及时预览</title>
+  <style>
+    img{ height: 150px; border: 1px solid #ccc; margin-right: 5px; }
+  </style>
+</head>
+<body>
+  <form action="">
+    <!-- <input type="file" id="files" onchange="getfilecontent()"> -->
+    <input type="file" id="files" multiple onchange="getfilecontent()">
+  </form>
+  <div>
+    <h3>预览：</h3>
+    <!-- <img src="" alt=""> -->
+  </div>
+  <script>
+    // 适用单张图片
+    /* function getfilecontent() {
+      let files = document.getElementById('files').files;
+      let reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = function() {
+        // console.log(reader.result);
+        document.querySelector('img').src = reader.result;
+      }
+    } */
+    
+    function getfilecontent() {
+      let FileList = document.getElementById('files').files;
+      let len = FileList.length;
+      
+      for (let i = 0; i < len; i++) {
+        let oImg = document.createElement('img');
+        let reader = new FileReader();
+        reader.readAsDataURL(FileList[i]);
+        reader.onload = function() {
+          oImg.src = reader.result;
+          document.querySelector('div').appendChild(oImg);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

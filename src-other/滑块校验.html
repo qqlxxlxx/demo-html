@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>拖动滑块校验</title>
+  <style>
+    .box {
+      position: relative;
+      width: 200px;
+      height: 30px;
+      background-color: #ccc;
+      margin: 100px auto 0;
+      user-select: none;
+    }
+    .btn {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      z-index: 2;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      background-color: #fff;
+      text-align: center;
+      line-height: 25px;
+      color: #999;
+    }
+    .text {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      line-height: 30px;
+      text-align: center;
+    }
+    .bg {
+      width: 0px;
+      height: 30px;
+      background-color: #57af57;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="btn">&gt;&gt;</div>
+    <p class="text">请向右滑动滑块</p>
+    <div class="bg"></div>
+  </div>
+  <script>
+    /* 涉及：事件处理、添加验证标记、选择器封装 */
+    var $ = function(name) {
+      return document.querySelector(name);
+    }
+    var btn = $('.btn');
+    var box = $('.box');
+    var bg = $('.bg');
+    var text = $('.text');
+    var flag = false;
+
+    var btnWidth = btn.offsetWidth;
+    var boxWidth = box.offsetWidth;
+    var maxOffset = boxWidth - btnWidth;
+    btn.onmousedown = function(ev1) {
+      ev1 = ev1 || window.ev1;
+      var downX = ev1.clientX;
+      btn.onmousemove = function(ev2) {
+        ev2 = ev2 || window.ev2;
+        var moveX = ev2.clientX - downX;
+        if (moveX > 0) {
+          this.style.left = moveX + 'px';
+          bg.style.width = moveX + 'px';
+          if (moveX >= maxOffset) {
+            text.innerText = '验证成功';
+            text.style.color = '#fff';
+            btn.onmousemove = null;
+            btn.onmousedown = null;
+            flag = true;
+            // 页面跳转等
+          }
+        }
+      }
+    }
+    btn.onmouseleave = function() {
+      if (flag) return;
+      btn.onmousemove = null;
+      this.style.left = 0;
+      bg.style.width = 0;
+    }
+    btn.onmouseup = function() {
+      if (flag) return;
+      btn.onmousemove = null;
+      this.style.left = 0;
+      bg.style.width = 0;
+    }
+  </script>
+</body>
+</html>

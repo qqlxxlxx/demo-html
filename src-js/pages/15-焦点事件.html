@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>焦点事件</title>
+  <style>
+    div { width: 200px; margin: 150px auto; }
+  </style>
+</head>
+<body>
+  <div>
+    <input type="text" />
+    <div class="text"></div>
+  </div>
+
+  <script>
+    let oInput = document.querySelector('input');
+    let oText = document.querySelector('.text');
+
+    // 1.监听input获取焦点
+    oInput.onfocus = function() {
+      oText.innerText = '获取到了焦点';
+    }
+
+    // 2.监听input失去焦点
+    oInput.onblur = function() {
+      oText.innerText = '失去了焦点';
+    }
+
+    // 3.监听input内容改变
+    // 注:onchange事件只有当表单失去焦点的时候,才能拿到修改的数据
+    // oInput.onchange = function(){
+    //   console.log(this.value);
+    // }
+    // 注:oninput事件可以实时获取用户修改之后的数据,只要修改了就立即调用
+    // oninput事件只有在IE9及以上的浏览器才能使用
+    // 在IE9以下如想实时获取用户修改之后的数据,可以通过onpropertychange事件来实现
+    // oInput.oninput = function() {
+    //   alert(this.value);
+    // }
+  </script>
+</body>
+</html>

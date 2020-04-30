@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="b1">获取</button>
+		<button id="b2">设置</button>
+		<button id="b3">刷新</button>
+		<button id="b4">强制刷新</button>
+		
+		<script>
+			let btn1 = document.querySelector("#b1");
+			let btn2 = document.querySelector("#b2");
+			let btn3 = document.querySelector("#b3");
+			let btn4 = document.querySelector("#b4");
+			
+			btn1.onclick = function(){
+				console.log(window.location.href);
+			}
+			btn2.onclick = function(){
+				window.location.href = "https://www.baidu.com/";
+			}
+			btn3.onclick = function(){
+				window.location.reload();
+			}
+			btn4.onclick = function(){
+				window.location.reload(true);
+			}
+			
+		</script>
+	</body>
+</html>

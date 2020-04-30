@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 300px;
+				height: 300px;
+				border: 1px solid blue;
+				margin: 30px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			img{
+				height: 100%;
+			}
+			p{
+				position: absolute;
+				width: 100%;
+				left: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				display: flex;
+				justify-content: space-between;
+			}
+			p span{
+				display: inline-block;
+				width: 20px;
+				height: 40px;
+				background-color: rgba(0,0,0,0.2);
+				line-height: 40px;
+				text-align: center;
+				font-size: 30px;
+				color: #ddd;
+				cursor: pointer;
+				user-select:none;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<img src="../img/tou1.jpg" alt="">
+			<!-- <ul>
+				<li><img src="img/tou1.jpg" alt=""></li>
+				<li><img src="img/tou2.jpg" alt=""></li>
+				<li><img src="img/tou3.jpg" alt=""></li>
+				<li><img src="img/tou4.jpg" alt=""></li>
+				<li><img src="img/tou5.jpg" alt=""></li>
+			</ul> -->
+			<p>
+				<span id="pre">&lt;</span>
+				<span id="next">&gt;</span>
+			</p>
+		</div>
+		
+		<script>
+			//1.获取需要操作的元素
+			let oImg = document.querySelector("img");
+			let preBtn = document.querySelector("#pre");
+			let nextBtn = document.querySelector("#next");
+			//2.定义一个数组保存所有需要展示的图片
+			//注:开发中通常都是通过网络请求去服务器上获取
+			let images = [
+				"../img/tou1.jpg",
+				"../img/tou2.jpg",
+				"../img/tou3.jpg",
+				"../img/tou4.jpg",
+				"../img/tou5.jpg"
+			];
+			let currentIndex = 0;
+			let maxIndex = images.length - 1;
+			
+			preBtn.onclick = f1;
+			nextBtn.onclick = f2;
+      
+			function f1(){
+				currentIndex--;
+				if(currentIndex < 0){
+					currentIndex = maxIndex;
+				}
+				oImg.src = images[currentIndex];
+			}
+			function f2(){
+				currentIndex++;
+				if(currentIndex > maxIndex){
+					currentIndex = 0;
+				}
+				oImg.src = images[currentIndex];
+			}
+			
+		</script>
+	</body>
+</html>

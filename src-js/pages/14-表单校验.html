@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      *{
+				margin: 0;
+				padding: 0;
+			}
+			form{
+				margin: 20px;
+			}
+			
+		</style>
+  </head>
+  <body>
+    <form action="https://www.baidu.com/" method="">
+      <input type="text" name="userName" placeholder="请输入账号(至少6位)" autocomplete="off" />
+      <input type="password" name="userPwd" placeholder="请输入密码(至少6位)" />
+      <input type="submit" name="" value="注册" />
+    </form>
+
+    <script>
+      /*需求
+			1.账号和密码必须大于6位
+			2.如果账号和密码的长度不够就改变输入框的颜色
+			3.如果用户输入的账号或密码不符合需求，就不能提交
+			*/
+      // 1.拿到需要操作的元素
+      let oUserName = document.querySelector("input[type=text]");
+      let oPassword = document.querySelector("input[type=password]");
+      let oSubmit = document.querySelector("input[type=submit]");
+      //2.监听注册按钮的点击
+      oUserName.onblur = check;
+      oPassword.onblur = check;
+      
+      function check() {
+        // 注:如果要获取input输入的内容，需通过value属性获取
+        console.log(this.name, this.value.length);
+        if (this.value.length < 6) {
+          this.style.background = "pink";
+          return false;
+        } else {
+          this.style.background = "#fff";
+        }
+      }
+      
+      oSubmit.onclick = function() {
+        if (oUserName.style.background == "pink" || oPassword.style.background == "pink") {
+          alert("输入格式不正确");
+          return false;
+        } 
+      }
+    </script>
+  </body>
+</html>

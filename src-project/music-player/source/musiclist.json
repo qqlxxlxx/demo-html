@@ -1,0 +1,91 @@
+[{
+    "name": "告白气球",
+    "singer": "周杰伦",
+    "album": "周杰伦的床边故事",
+    "time": "03:35",
+    "link_url": "./source/告白气球.mp3",
+    "cover": "./source/告白气球.jpg",
+    "link_lrc": "./source/告白气球.txt",
+    "id": "0001"
+  },
+  {
+    "name": "故梦",
+    "singer": "橙翼",
+    "album": "墨宝",
+    "time": "04:48",
+    "link_url": "./source/故梦.mp3",
+    "cover": "./source/故梦.jpg",
+    "link_lrc": "./source/故梦.txt",
+    "id": "0002"
+  },
+  {
+    "name": "广东十年爱情故事",
+    "singer": "广东雨神",
+    "album": "weizhi",
+    "time": "03:34",
+    "link_url": "./source/广东十年爱情故事.mp3",
+    "cover": "./source/广东十年爱情故事.jpg",
+    "link_lrc": "./source/广东十年爱情故事.txt",
+    "id": "0003"
+  },
+  {
+    "name": "慢慢",
+    "singer": "张学友",
+    "album": "忘记你我做不到",
+    "time": "04:43",
+    "link_url": "./source/慢慢.mp3",
+    "cover": "./source/慢慢.jpg",
+    "link_lrc": "./source/慢慢.txt",
+    "id": "0004"
+  },
+  {
+    "name": "清明雨上",
+    "singer": "许嵩",
+    "album": "自定义",
+    "time": "03:39",
+    "link_url": "./source/清明雨上.mp3",
+    "cover": "./source/清明雨上.jpg",
+    "link_lrc": "./source/清明雨上.txt",
+    "id": "0005"
+  },
+  {
+    "name": "山外小楼夜听雨",
+    "singer": "任然",
+    "album": "从小到大",
+    "time": "04:09",
+    "link_url": "./source/山外小楼夜听雨.mp3",
+    "cover": "./source/山外小楼夜听雨.jpg",
+    "link_lrc": "./source/山外小楼夜听雨.txt",
+    "id": "0006"
+  },
+  {
+    "name": "有何不可",
+    "singer": "许嵩",
+    "album": "自定义",
+    "time": "04:01",
+    "link_url": "./source/有何不可.mp3",
+    "cover": "./source/有何不可.jpg",
+    "link_lrc": "./source/有何不可.txt",
+    "id": "0007"
+  },
+  {
+    "name": "算什么男人",
+    "singer": "周杰伦",
+    "album": "周杰伦的床边故事",
+    "time": "04:49",
+    "link_url": "./source/算什么男人.mp3",
+    "cover": "./source/算什么男人.jpg",
+    "link_lrc": "./source/算什么男人.txt",
+    "id": "0008"
+  },
+  {
+    "name": "那女孩对我说",
+    "singer": "黄义达",
+    "album": "专属密码",
+    "time": "04:31",
+    "link_url": "./source/那女孩对我说.mp3",
+    "cover": "./source/那女孩对我说.jpg",
+    "link_lrc": "./source/那女孩对我说.txt",
+    "id": "0009"
+  }
+]

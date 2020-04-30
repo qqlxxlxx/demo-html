@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>client</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 100px;
+				height: 100px;
+				padding: 50px;
+				border: 50px solid black;
+				background-color: pink;
+				/* margin-top: 10px; */
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		
+		<script>
+			let div = document.getElementById("box");
+			
+			//元素宽度+内边距
+			console.log(div.clientWidth); 
+			console.log(div.clientHeight); 
+			
+			//左边框/上边框
+			console.log(div.clientLeft); 
+			console.log(div.clientTop); 
+			
+		</script>
+	</body>
+</html>

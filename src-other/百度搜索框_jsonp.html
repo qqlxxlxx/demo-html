@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <link rel="stylesheet" type="text/css" href="css/baidu.css" />
+  <title>关键字搜索</title>
+  <style>
+    div{
+      width: 500px;
+      height: 500px;
+      margin: 0 auto;
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h2>关键字搜索</h2>
+    <input type="text" placeholder="请输入要搜索的内容">
+    <ul></ul>
+  </div>
+  
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    let $ul = $("ul");
+    $("input").on("input", function() {
+      // console.log(this.value);
+      $.ajax({
+        url: "https://www.baidu.com/sugrec?prod=pc&from=pc_web&wd=" + this.value,
+        dataType: "jsonp",
+        jsonp: "cb",
+        // jsonpCallback: "lxx",
+        success: function(msg) {
+          // console.log(msg);
+          creatItem(msg.g);
+        },
+        error: function(msg) {
+          console.log(msg);
+        }
+      });
+    });
+
+    function creatItem(list) {
+      $("ul>li").remove();
+      if (!list) return;
+      for (let i = 0; i < list.length; i++) {
+        let $li = $("<li>" + list[i].q + "</li>");
+        $ul.append($li);
+      }
+    }
+  </script>
+</body>
+</html>

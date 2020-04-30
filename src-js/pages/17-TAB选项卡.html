@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>tab选项卡</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .box {
+      width: 400px;
+      height: 300px;
+      margin: 30px auto;
+      border: 1px solid #000000;
+      border-radius: 3px;
+    }
+    .top {
+      list-style: none;
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+    }
+    .top li {
+      width: 80px;
+      height: 100%;
+      border-right: 1px solid #000000;
+      background-color: #333;
+      color: white;
+    }
+    .top li:last-child {
+      border-right: none;
+    }
+    .bottom {
+      width: 100%;
+      height: 260px;
+    }
+    .bottom .content {
+      width: 100%;
+      height: 100%;
+      background-color: #ddd;
+      display: none;
+    }
+    .bottom .content:first-child {
+      display: block;
+    }
+    .current {
+      background-color: #666 !important;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="box">
+    <ul class="top">
+      <li class="current">新闻</li>
+      <li>视频</li>
+      <li>音乐</li>
+      <li>军事</li>
+      <li>财经</li>
+    </ul>
+    <div class="bottom">
+      <div class="content">新闻的内容</div>
+      <div class="content">视频的内容</div>
+      <div class="content">音乐的内容</div>
+      <div class="content">军事的内容</div>
+      <div class="content">财经的内容</div>
+    </div>
+  </div>
+
+  <script>
+    //1.拿到需要操作的元素
+    let oItems = document.querySelectorAll("li");
+    let oDivs = document.querySelectorAll(".content");
+
+    //2.给所有的选项卡添加点击事件
+    let previousIndex = 0; //定义变量保存上一次的索引
+    let maxIndex = oItems.length;
+    for (let i = 0; i < maxIndex; i++) {
+      let item = oItems[i];
+      //item.setAttribute("index",i);
+      item.onclick = function() {
+        let preItem = oItems[previousIndex];
+        let preDiv = oDivs[previousIndex];
+        let oDiv = oDivs[i];
+        
+        //清空上一次对应的元素对应的样式
+        preItem.className = "";
+        preDiv.style.display = "none";
+
+        //设置当前这一次元素对应的样式
+        // let index = this.getAttribute("index");
+        this.className = "current";
+        oDiv.style.display = "block";
+
+        //保存当前这一次的索引
+        previousIndex = i;
+      }
+    }
+
+    /*
+    //定义变量保存上一次的索引
+    let previousIndex = 0;
+    
+    function change(){
+      //清空上一次对应的元素对应的样式
+      let preItem = oItems[previousIndex];
+      // console.log(preItem);
+      preItem.className = "";
+      let preDiv = oDivs[previousIndex];
+      preDiv.style.display = "none";
+      
+      //设置当前这一次元素对应的样式
+      let index = this.getAttribute("index");
+      this.className = "current";
+      let oDiv = oDivs[index];
+      oDiv.style.display = "block";
+      
+      //保存当前这一次的索引
+      previousIndex = index;
+    }*/
+  </script>
+</body>
+</html>

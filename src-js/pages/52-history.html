@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>浏览器的历史信息</title>
+	</head>
+	<body>
+		<button id="b1">前进</button>
+		<button id="b2">刷新</button>
+		<a href="52-history2.html">新界面</a>
+		
+		<script>
+			let btn1 = document.querySelector("#b1");
+			let btn2 = document.querySelector("#b2");
+			
+			btn1.onclick = function(){
+				//法1
+				// window.history.forward();
+				//法2:前进一个界面
+				window.history.go(1);
+			}
+			btn2.onclick = function(){
+				window.history.go(0);
+			}
+			
+		</script>	
+	</body>
+</html>

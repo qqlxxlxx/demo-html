@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>定时器</title>
+  <style>
+    .box { padding-top: 200px; display: flex; justify-content: center; }
+    button { margin-right: 20px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <button id="star">开始⏲</button>
+    <button id="close">暂停⏲</button>
+    <div class="text">0s</div>
+  </div>
+  <script>
+    /*
+    JS中有两种定时器，一种是重复执行的定时器，一种是只执行一次的定时器
+    */
+   
+    // 1.重复执行的定时器
+    let id = null;
+    let starBtn = document.querySelector("#star");
+    let sec = 0;
+    starBtn.onclick = function() {
+      if (id) return;
+      id = setInterval(function() {
+        document.querySelector(".text").innerText = sec++ + "s";
+      }, 1000);
+    }
+    let closeBtn = document.querySelector("#close");
+    closeBtn.onclick = function() {
+      clearInterval(id);
+      id = null;
+    }
+
+    // 2.只执行一次定时器
+    // setTimeout(function() {
+    // 	console.log("999");
+    // }, 3000);
+    // 关闭只执行一次定时器方法:clearTimeout(id);
+  </script>
+</body>
+</html>

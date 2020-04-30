@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>navigator</title>
+	</head>
+	<body>
+		<script>
+			console.log(window.navigator);
+			
+			var agent = window.navigator.userAgent;
+			console.log(agent);
+			
+			if(/chrome/i.test(agent)){
+				alert("当前是谷歌浏览器");
+			}else if(/firefox/i.test(agent)){
+				alert("当前是火狐浏览器");
+			}else if(/msie/i.test(agent)){
+				alert("当前是低级IE浏览器");
+			}else if("ActiveXObject" in window){
+				alert("当前是高级IE浏览器");
+			}
+			
+		</script>
+	</body>
+</html>

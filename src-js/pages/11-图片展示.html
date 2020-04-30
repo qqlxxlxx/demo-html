@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>鼠标移入图片展示</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      height: 1000px;
+    }
+    div {
+      width: 500px;
+      margin: 30px auto;
+      border: 2px solid red;
+    }
+    div>img {
+      height: 500px;
+      width: 500px;
+    }
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+
+    }
+    ul>li {
+      border: 2px solid transparent;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+    ul>li>img {
+      width: 95px;
+      height: 95px;
+      vertical-align: bottom;
+    }
+    .current {
+      border: 2px solid skyblue;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <img src="../img/tou1.jpg">
+    <ul>
+      <li><img src="../img/tou1.jpg"></li>
+      <li><img src="../img/tou2.jpg"></li>
+      <li><img src="../img/tou3.jpg"></li>
+      <li><img src="../img/tou4.jpg"></li>
+      <li><img src="../img/tou5.jpg"></li>
+    </ul>
+  </div>
+
+  <script>
+    //1.拿到需要操作的元素
+    let oImg = document.querySelector("div>img");
+    let oItems = document.querySelectorAll("li>img");
+    //2.给每一个小图添加移入和移出事件
+    for (let item of oItems) {
+      item.onmouseenter = enter;
+      item.onmouseleave = leave;
+    }
+    function enter() {
+      //1.给当前小图的父元素添加边框
+      this.parentNode.className = "current";
+      //2.将当前小图地址设置给大图
+      oImg.src = this.src;
+    }
+    function leave() {
+      //将当前小图的父元素边框滞空
+      this.parentNode.className = "";
+      // oImg.src = this.src;
+    }
+  </script>
+</body>
+</html>

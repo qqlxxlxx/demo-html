@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>获取图片平均色</title>
+  <style>
+    div{ width: 200px; height: 200px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <img src="../../masonry_layouts/img/img01.jpg" alt="">
+  <div></div>
+
+  <script>
+    window.onload = function() {
+      var oImg = document.querySelector('img');
+      var oDiv = document.querySelector('div');
+      
+      function getImgColor(oImg) {
+        var oCan = document.createElement('canvas');
+        oCan.width = oImg.width;
+        oCan.height = oImg.height;
+        
+        var ctx = oCan.getContext('2d');
+        ctx.drawImage(oImg, 0, 0, oCan.width, oCan.height);
+      
+        var data = ctx.getImageData(0, 0, oImg.width, oImg.height).data; // getImageData获取不到远程图片数据.
+        // console.log(data);
+        var r = 1,
+          g = 1,
+          b = 1;
+        for (var i = 0; i < oImg.height; i++) {
+          for (var j = 0; j < oImg.width; j++) {
+            // console.log(data[((oImg.width * i) + j) * 4]);
+            // console.log(((oImg.width * i) + j) * 4);
+            r += data[((oImg.width * i) + j) * 4];
+            g += data[((oImg.width * i) + j) * 4 + 1];
+            b += data[((oImg.width * i) + j) * 4 + 2];
+          }
+        }
+        r = Math.round(r / (oImg.width * oImg.height));
+        g = Math.round(g / (oImg.width * oImg.height));
+        b = Math.round(b / (oImg.width * oImg.height));
+        return `rgb(${r},${g},${b})`;
+      }
+      
+      oDiv.style.backgroundColor = getImgColor(oImg);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.nav{
+				width: 900px;
+				height: 63px;
+				background: url("../img/doubleOne.png") no-repeat right center;
+				border: 1px solid #333;
+				margin: 100px auto;
+				position: relative;
+			}
+			ul{
+				position: absolute;
+				z-index: 3;
+			}
+			ul li{
+				list-style: none;
+				width: 88px;
+				line-height: 63px;
+				float: left;
+				text-align: center;
+			}
+			span{
+				display: inline-block;
+				width: 88px;
+				height: 63px;
+				background: url("../img/tMall.png") no-repeat;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div class="nav">
+			<ul>
+				<li>11111</li>
+				<li>22222</li>
+				<li>33333</li>
+				<li>44444</li>
+				<li>55555</li>
+				<li>66666</li>
+				<li>11111</li>
+				<li>22222</li>
+				<li>33333</li>
+			</ul>
+			<span></span>
+		</div>
+		
+		<script src="../js/animation2.js"></script>
+		<script>
+			let oItems = document.querySelectorAll("li");
+			let oSpan = document.querySelector("span");
+			// console.log(oItems);
+			
+			for(let i = 0; i < oItems.length; i++){
+				let item = oItems[i];
+				item.onclick = function(){
+					// oSpan.style.left = this.offsetLeft + "px";
+					easeAnimation(oSpan, {"left": this.offsetLeft});
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>浏览器的历史信息</title>
+	</head>
+	<body>
+		<button id="b3">后退</button>
+		
+		<script>
+			let btn3 = document.querySelector("#b3");
+			
+			btn3.onclick = function(){
+				//法1
+				// window.history.back();
+				//法2:前进一个界面
+				window.history.go(-1);
+			}
+			
+		</script>	
+	</body>
+</html>

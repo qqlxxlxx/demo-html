@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    div {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      font-size: 20px;
+    }
+    ol {
+      position: fixed;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    ol li {
+      list-style: none;
+      width: 70px;
+      height: 20px;
+      border: 1px solid #333;
+      margin: 3px auto;
+      text-align: center;
+      font-size: 14px;
+    }
+    .selected {
+      background: rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="floor1">第1层</div>
+  <div class="floor2">第2层</div>
+  <div class="floor3">第3层</div>
+  <div class="floor4">第4层</div>
+  <div class="floor5">第5层</div>
+  <ol>
+    <li class="selected">第1层</li>
+    <li>第2层</li>
+    <li>第3层</li>
+    <li>第4层</li>
+    <li>第5层</li>
+  </ol>
+
+  <script src="../js/tools.js"></script>
+  <script>
+    // 1.初始化楼层颜色
+    let oPages = document.querySelectorAll("div");
+    let colorArr = ['pink', 'skyblue', 'lightgrey', 'thistle', 'seagreen']
+    for (let i = 0; i < oPages.length; i++) {
+      let page = oPages[i];
+      page.style.background = colorArr[i];
+    }
+
+    // 2.实现点击选中
+    let oItems = document.querySelectorAll("ol>li");
+    let currentItem = oItems[0];
+    // 可视区域高度
+    let screenHeight = getScreen().height;
+    let timerId = null;
+    for (let i = 0; i < oItems.length; i++) {
+      let item = oItems[i];
+      item.onclick = function() {
+        currentItem.className = "";
+        this.className = "selected";
+        currentItem = this;
+        // 实现滚动
+        // window.scrollTo(0, i * screenHeight); //法1
+        // document.documentElement.scrollTop = i * screenHeight; //法2,不能加单位px
+        // 实现滚动动画
+        clearInterval(timerId);
+        timerId = setInterval(function() {
+          let begin = document.documentElement.scrollTop; //起始位置
+          console.log(begin);
+          let target = i * screenHeight; //终点位置 ？
+          console.log(target);
+          let step = (target - begin) * 0.3;
+          begin += step;
+          if (Math.abs(Math.floor(step)) <= 1) {
+            clearInterval(timerId);
+            document.documentElement.scrollTop = i * screenHeight;
+            return;
+          }
+          document.documentElement.scrollTop = begin;
+        }, 50)
+      }
+    }
+    // bug:滚动页面li未跟随选中
+  </script>
+</body>
+</html>
