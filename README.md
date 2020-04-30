@@ -3,7 +3,8 @@
 ## 关于贪吃蛇
 
 ### 定义变量
-```
+
+```js
 let sw = 20, // 方块宽
     sh = 20, // 方块高
     tr = 30, // 行数
@@ -61,7 +62,7 @@ while循环中随机生成x,y坐标，循环蛇身信息数组，判断新坐标
 然后创建食物新实例，更新食物实例坐标位置
 获取页面食物dom元素，如果获取不到，就创建新食物方块添加到页面，反之，更新页面的食物 left top 值（单例模式）
 
-```
+```js
 let include = true;
 while (include) {
     x = Math.floor(Math.random() #####  (td - 1));
@@ -103,7 +104,7 @@ while (include) {
 
 监听暂停按钮点击，隐藏暂停按钮，调用游戏开始方法
 
-```
+```js
 let startBtn = document.querySelector('.start-btn button');
 startBtn.onclick = function () {
     game.init();
