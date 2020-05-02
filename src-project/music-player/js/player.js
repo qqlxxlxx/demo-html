@@ -11,6 +11,8 @@
       this.currentIndex = -1;
       // 是否删除了当前歌曲并重排了当前歌曲索引
       this.isDelCur = false;
+      // 播放顺序
+      this.play = 'random';
     }
     // 播放音乐的方法
     playMusic(index, music, callBack) {
@@ -42,7 +44,6 @@
     // 获取上一首的索引
     preIndex() {
       let index = this.currentIndex - 1 < 0 ? this.musicList.length - 1 : this.currentIndex - 1;
-      return index
     }
     // 获取下一首的索引
     nextIndex() {
@@ -71,8 +72,7 @@
         flag = false;
         timerId = setTimeout(() => {
           flag = true;
-          let timeStr = this.formatTime(this.audio.currentTime, this.audio.duration)
-          // 执行回调函数
+          let timeStr = this.formatTime(this.audio.currentTime, this.audio.duration);
           callBack(this.audio.currentTime, this.audio.duration, timeStr);
         }, 350);
       })

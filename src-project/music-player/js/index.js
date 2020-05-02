@@ -1,6 +1,7 @@
 $(function() {
   // Player，Lyric，Progress实例
   let player = new Player($('audio')), lyric, progress, voiceProgress;
+  let _volume;
   
   // 加载歌曲列表
   getMusicList()
@@ -107,9 +108,6 @@ $(function() {
       $('.songlist-bd .song-item').each((index, ele) => {
         $(ele).find('.number').text(index + 1);
       })
-      
-      // 
-      $('.btn-voice').toggleClass('')
     })
     
     // 监听音乐播放的进度
@@ -137,6 +135,14 @@ $(function() {
     // 监听音量图标点击
     $('.btn-voice').click(function() {
       $(this).toggleClass('btn-voice2');
+      if ($(this).hasClass('btn-voice2')) {
+        voiceProgress.setProgress(0);
+        $('audio')[0].volume = 0;
+      } else {
+        let ratio = _volume || 1;
+        $('audio')[0].volume = ratio;
+        voiceProgress.setProgress(ratio * 100);
+      }
     })
   }
 
@@ -220,6 +226,7 @@ $(function() {
     voiceProgress = new Progress($('.player-voice'), $('.player-voice .progress-line'));
     voiceProgress.progressClick(ratio => {
       $('audio')[0].volume = ratio;
+      _volume = ratio;
     });
   }
 })

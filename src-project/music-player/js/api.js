@@ -7,7 +7,7 @@ function request(url, callBack) {
       callBack(data);
     },
     error: function(e) {
-      console.log(e);
+      console.log('http err');
     }
   })
 }
