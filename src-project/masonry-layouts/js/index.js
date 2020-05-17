@@ -22,7 +22,7 @@ window.onload = function() {
   window.onresize = throttle(function() {
     colums = resetWidth(oMain, oImgBoxs);
     waterFall(oImgBoxs, colums);
-  }, 500);
+  }, 800);
 
   // 监听是否滚动到底部，加载新图
   window.onscroll = throttle(function() {
@@ -41,29 +41,60 @@ window.onload = function() {
 }
 
 function getImgUrls() {
-  let arr = [];
-  for (let i = 1; i <= 40; i++) {
-    let index = i < 10 ? '0' + i : i;
-    let src = `img/img${index}.jpg`;
-    arr.push(src);
-  }
+  // let arr = [];
+  // for (let i = 1; i <= 40; i++) {
+  //   let index = i < 10 ? '0' + i : i;
+  //   let src = `img/img${index}.jpg`;
+  //   arr.push(src);
+  // }
+  let arr = [
+    'https://i02piccdn.sogoucdn.com/56107610b1393e60',
+    'https://i01piccdn.sogoucdn.com/3a6cd2b801c0ee0a',
+    'https://i03piccdn.sogoucdn.com/2e90158617f76263',
+    'https://i01piccdn.sogoucdn.com/dfc47e6abced6f56',
+    'https://i01piccdn.sogoucdn.com/3bea8eb5e078a298',
+    'https://i01piccdn.sogoucdn.com/f6528e79b5afeac5',
+    'https://i03piccdn.sogoucdn.com/422135ba9a38bc0c',
+    'https://i02piccdn.sogoucdn.com/bb26a038374fa8d0',
+    'https://i01piccdn.sogoucdn.com/4faec3162f82f7bc',
+    'https://i03piccdn.sogoucdn.com/a595682c3c4035c7',
+    'https://i01piccdn.sogoucdn.com/afb66367cfc2088e',
+    'https://i04piccdn.sogoucdn.com/98f3038b7225cc31',
+    'https://i02piccdn.sogoucdn.com/09d9152ed98a38b0',
+    'https://i01piccdn.sogoucdn.com/14c59a869ecc9fb7',
+    'https://i04piccdn.sogoucdn.com/c83285c587fac6e3',
+    'https://i02piccdn.sogoucdn.com/5e0b3aa055599d4d',
+    'https://i02piccdn.sogoucdn.com/1deef1da5b63b176',
+    'https://i02piccdn.sogoucdn.com/bbe2f24d79276874',
+    'https://i02piccdn.sogoucdn.com/1ec59dfef9123c26',
+    'https://i03piccdn.sogoucdn.com/32a17879ad7ff09a',
+    'https://i04piccdn.sogoucdn.com/aa3711d191cca3e8',
+    'https://i03piccdn.sogoucdn.com/15cbb3b08504ce5d',
+    'https://i03piccdn.sogoucdn.com/a86a870fecabe4c2',
+    'https://i03piccdn.sogoucdn.com/1e96fc3367799232',
+    'https://i02piccdn.sogoucdn.com/221214417c37f238',
+    'https://i02piccdn.sogoucdn.com/1a28ffbd331052b0',
+    'https://i03piccdn.sogoucdn.com/bd21b737a966397c',
+    'https://i04piccdn.sogoucdn.com/d8dc147d2bcbe854',
+    'https://i01piccdn.sogoucdn.com/77b8f3c8f96e2284',
+    'https://i04piccdn.sogoucdn.com/dc5a11dcea374dfe',
+    'https://i03piccdn.sogoucdn.com/490919f8fc6273b4',
+    'https://i04piccdn.sogoucdn.com/7c5243355d235e80',
+    'https://i03piccdn.sogoucdn.com/b8a7fe1bc1c7c049',
+    'https://i01piccdn.sogoucdn.com/7a9db5bc1f9ce0a8',
+    'https://i02piccdn.sogoucdn.com/93d5df6b4011695f',
+    'https://i04piccdn.sogoucdn.com/6fbb19d342ff3a47',
+    'https://i02piccdn.sogoucdn.com/56fbf38236325353',
+    'https://i02piccdn.sogoucdn.com/af42a43c76934e04',
+    'https://i03piccdn.sogoucdn.com/33d978c9fafe75eb',
+    'https://i01piccdn.sogoucdn.com/bea6a8831d705293'
+  ];
   return arr;
 }
 
 /**
  * 创建所有图片的方法
  */
-/* function createImages(oMain, imgUrls) {
-  imgUrls.forEach(url => {
-    let oDiv = document.createElement('div');
-    let oImg = document.createElement('img');
-    oDiv.className = 'box';
-    oImg.src = url;
-    oDiv.appendChild(oImg);
-    oMain.appendChild(oDiv);
-  })
-  return document.querySelectorAll('.box');
-} */
 function createImages(oMain, oImgs) {
   oImgs.forEach(oImg => {
     let oDiv = document.createElement('div');

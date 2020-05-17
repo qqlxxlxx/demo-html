@@ -1,1 +1,95 @@
-*{margin:0;padding:0;}.content{position:relative;width:660px;height:660px;border:1px solid black;margin:0 auto;}.content .btn{position:absolute;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.3);z-index:2;}.content .btn button{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:none;border:none;outline:none;cursor:pointer;}.content .start-btn button{width:180px;height:60px;background:url("../img/start.png") no-repeat center/cover;}.content .pause-btn{display:none;}.content .pause-btn button{width:60px;height:60px;background:url("../img/pause.png") no-repeat center/cover;}.content #snakeWrap{position:relative;width:600px;height:600px;background:#a7b1d5;border:30px solid #779dcc;}#snakeWrap .snakeHead{background:url("../img/snake.png") no-repeat center/170% 170%;}#snakeWrap .snakeBody{background-color:#215F1E;border-radius:50%;box-sizing:border-box;}#snakeWrap .food{background:url("../img/apple.png") no-repeat center/100% 100%;}.content .score-warp{position:absolute;top:5px;left:30px;width:150px;color:#fff;}.tip{margin-top:50px;color:#666;text-align:center;}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,body {
+  width: 100%;
+  height: 100%;
+  background-color: pink;
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  width: 660px;
+  height: 660px;
+  box-shadow: 5px 5px 10px 3px rgba(51,51,51,.5),
+    -2px -2px 5px rgba(51,51,51,.1);
+  margin: 50px auto;
+}
+
+.content .btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51,51,51,.3);
+  z-index: 2;
+}
+
+.content .btn button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.content .start-btn button {
+  width: 180px;
+  height: 60px;
+  background: url("../img/start.png") no-repeat center/cover;
+}
+
+.content .pause-btn {
+  display: none;
+}
+
+.content .pause-btn button {
+  width: 60px;
+  height: 60px;
+  background: url("../img/pause.png") no-repeat center/cover;
+}
+
+#snakeWrap {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  background: #a7b1d5;
+  border: 30px solid #779dcc;
+  box-shadow: inset 2px 2px 10px rgba(51,51,51,.3);
+}
+
+#snakeWrap .snakeHead {
+  background: url("../img/snake.png") no-repeat center/170% 170%;
+}
+
+#snakeWrap .snakeBody {
+  background-color: #215F1E;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+#snakeWrap .food {
+  background: url("../img/apple.png") no-repeat center/100% 100%;
+}
+
+.content .score-warp {
+  position: absolute;
+  top: 5px;
+  left: 30px;
+  width: 150px;
+  color: #fff;
+}
+
+.tip {
+  margin-top: 50px;
+  color: #666;
+  text-align: center;
+  font-weight: bold;
+}
