@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>弹出菜单(无滚动条)</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      width: 100%;
+      user-select: none;
+    }
+    header,footer {
+      height: 70px;
+      background: #333;
+      color: #fff;
+      text-align: center;
+    }
+    header.fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9;
+    }
+    header .btn {
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      background: #000;
+    }
+    header .menu {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      min-height: 100px;
+      height: calc(100vh - 10px);
+      overflow-y: auto;
+      background: rgba(0,0,0,.7);
+      display: none;
+      line-height: 30;
+    }
+    main {
+      height: 2000px;
+      background: #f9f9f9;
+      line-height: 16;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header class="fixed">
+    <div class="btn">X</div>
+    <div class="menu">
+      <p>我是弹出菜单</p>
+    </div>
+    header
+  </header>
+  <main>
+    <p>main1</p>
+    <p>main2</p>
+    <p>main3</p>
+    <p>main4</p>
+    <p>main5</p>
+    <p>main6</p>
+    <p>main7</p>
+  </main>
+  <footer>footer</footer>
+  <script type="text/javascript">
+    let scrollTop;
+    $('.btn').click(function() {
+      if ($('.menu').css('display') === 'none') {
+        scrollTop = $(document).scrollTop()
+        $('body').css({
+          position: 'fixed',
+          top: -scrollTop + 'px'
+        })
+        $('.menu').css({
+          display: 'block'
+        })
+      } else {
+        $('body').css({
+          position: '',
+          top: ''
+        })
+        $('.menu').css({
+          display: 'none'
+        })
+        $(document).scrollTop(scrollTop)
+      }
+    })
+  </script>
+</body>
+</html>
