@@ -1,0 +1,92 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+img {
+  display: block;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  min-width: 1200px;
+  height: 100vh;
+  perspective: 2000px;
+  overflow: hidden;
+}
+
+.header {
+  width: 35%;
+  height: 500px;
+  position: absolute;
+  top: calc(50% - 280px);
+  left: 10%;
+  color: rgba(255,255,255,.8);
+}
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+}
+nav {
+  text-align: center;
+}
+nav div {
+  height: 100px;
+  line-height: 100px;
+  box-sizing: border-box;
+}
+nav a {
+  text-decoration: none;
+  color: #fff;
+  color: rgba(255,255,255,.8);
+  font-size: 24px;
+  transition: all 0.3s;
+}
+nav a:hover {
+  color: rgba(255,255,255,.4);
+}
+
+.container > .mask-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  filter: blur(20px);
+  transform: scale(1.06);
+}
+
+.box {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: calc(50% - 250px);
+  right: 15%;
+  transform-style: preserve-3d;
+  transform: rotateX(-17deg) rotateY(20deg);
+}
+.box div {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid #333;
+  overflow: hidden;
+}
+.box div:nth-child(1) {
+  transform: translateX(-50%) rotateY(-90deg);
+}
+.box div:nth-child(2) {
+  transform: translateY(-50%) rotateX(90deg);
+}
+.box div:nth-child(3) {
+  transform: translateZ(200px) rotateY(0);
+}
