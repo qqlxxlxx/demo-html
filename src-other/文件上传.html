@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>文件上传</title>
+  <style>
+    .section { margin-bottom: 100px; }
+    
+    img { height: 150px; border: 1px solid #ccc; margin-right: 5px; }
+    
+    .custom-btn { width: 100px; height: 50px; outline: 0; background: #028BAF; color: #fff; }
+    .file-name { height: 50px; line-height: 50px; color: deeppink; font-weight: bold; }
+  </style>
+</head>
+<body>
+  
+  <div class="section">
+    <h2>自定义文件上传按钮</h2>
+    <input type="file" id="defaultBtn" hidden>
+    <div>
+      <button class="custom-btn" >选择文件</button>
+      <div class="file-name">未选择任何文件</div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <h2>本地图片上传预览</h2>
+    <form action="">
+      <input type="file" id="files" multiple onchange="getfilecontent()">
+    </form>
+   <div id="preImg">
+     <p>图片预览：</p>
+   </div>
+  </div>
+  
+  
+  
+  <script>
+    // 自定义文件上传按钮
+    getFileName();
+    function getFileName() {
+      let defaultBtn = document.getElementById('defaultBtn')
+      let customBtn = document.querySelector('.custom-btn')
+      let fileName = document.querySelector('.file-name')
+      
+      customBtn.onclick = function() {
+        defaultBtn.click()
+      }
+      
+      defaultBtn.addEventListener('change', function() {
+        if (this.value) {
+          let arr = this.value.split('\\')
+          fileName.innerText = arr[arr.length - 1]
+        } else {
+          fileName.innerText = '未选择任何文件'
+        }
+      })
+    }
+    
+    // 本地图片上传预览：适用多张图片
+    function getfilecontent() {
+      let FileList = document.getElementById('files').files;
+      let len = FileList.length;
+      
+      for (let i = 0; i < len; i++) {
+        let oImg = document.createElement('img');
+        let reader = new FileReader();
+        reader.readAsDataURL(FileList[i]);
+        reader.onload = function() {
+          oImg.src = reader.result;
+          document.querySelector('#preImg').appendChild(oImg);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
