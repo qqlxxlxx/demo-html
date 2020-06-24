@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>楼层导航</title>
+  <style>
+    html, body, h1 {
+      margin: 0;
+      padding: 0;
+    }
+    .nav-box {
+      position: fixed;
+      top: 100px;
+      left: 0;
+      width: 100px;
+      background: rgba(50,50,50,.1);
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    .nav-box a {
+      display: block;
+      line-height: 50px;
+      color: #000;
+      transition: all .3s;
+    }
+    .nav-box a.cur {
+      color: green;
+    }
+    .nav-box a:hover {
+      color: green;
+    }
+    h1 {
+      height: 800px;
+      background: #e6e6e6;
+      text-align: center;
+    }
+    h1:nth-child(even) {
+      background: #ffecec;
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-box">
+    
+  </div>
+  <div class="content">
+    <h1 id="title1">title1</h1>
+    <h1 id="title2">title2</h1>
+    <h1 id="title3">title3</h1>
+    <h1 id="title4">title4</h1>
+  </div>
+  
+  <script type="text/javascript">
+    let titles = document.querySelectorAll('h1');
+    let navBox = document.querySelector('.nav-box');
+    let links = [];
+    let clickFlag = false;
+    
+    // 动态生成导航，并添加点击事件
+    for (let i = 0; i < titles.length; i++) {
+      let oA = document.createElement('a');
+      oA.href = '#' + titles[i].id;
+      oA.innerText = titles[i].innerText;
+      navBox.appendChild(oA);
+      links.push(oA);
+      if (!i && window.pageYOffset === 0) oA.className = 'cur';
+      // 监听导航点击
+      oA.onclick = handleClick
+    }
+    
+    // 监听网页滚动
+    document.addEventListener('scroll', throttle(handleScroll, 500));
+    
+    function handleScroll() {
+      // 如果执行了点击事件，就不需要执行网页滚动代码
+      if (clickFlag) {
+        clickFlag = false;
+        return;
+      }
+      
+      console.log('执行了');
+      
+      let scrollTop = window.pageYOffset;
+      let curLink = null;
+      
+      for (let i = 0; i < titles.length; i++) {
+        // 如果标题距离高度大于网页滚动高度，进入下一次循环
+        if (titles[i].offsetTop > scrollTop) continue;
+        
+        // 选取距离顶部高度最高那个标题
+        if (!curLink) {
+          curLink = links[i];
+        } else if (titles[i].offsetTop > curLink.offsetTop) {
+          curLink = links[i];
+        }
+      }
+      
+      if (curLink) {
+        links.forEach(el => el.className = '');
+        curLink.className = 'cur';
+      }
+    }
+    
+    function handleClick() {
+      links.forEach(el => el.className = '');
+      this.className = 'cur';
+      clickFlag = true;
+    }
+    
+    function throttle(fn, delay = 100) {
+      let timerId = null;
+      let flag = true;
+      return function() {
+        if (!flag) return;
+        flag = false;
+        timerId && clearTimeout(timerId);
+        timerId = setTimeout(() => {
+          flag = true;
+          fn.apply(this, arguments);
+        }, delay)
+      }
+    }
+
+  </script>
+</body>
+</html>
